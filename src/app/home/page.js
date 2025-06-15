@@ -19,6 +19,7 @@ import Image from "next/image";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Sticky from "@/components/Sticky";
 import Intro from "@/components/Intro";
+import PortalScrollDemo from "../rough/page";
 
 export default function Home() {
   // Initialize Lenis for smooth scrolling
@@ -403,34 +404,31 @@ export default function Home() {
 
       {/* Duplicate Section with camera.webp (image left, video right) */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-8 mx-4 lg:mx-0 mt-12">
-        {/* Left: Featured Image (camera.webp) */}
+        {/* Left: 3D Model */}
         <div className="w-full md:w-[45%] pr-4 flex items-center justify-center">
-          <div className="relative">
-            <Image
-              src={cameraWebpImg.src}
-              alt="Featured Project 2"
-              width={500}
-              height={500}
-              className="max-w-full h-auto object-contain"
-              priority
-            />
-            <span className="absolute top-4 left-4 px-3 py-1 text-xs font-semibold text-yellow-300 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">PREMIUM PROJECT 2</span>
+          <div className="relative w-full">
+            <PortalScrollDemo />
+            <span className="absolute top-4 left-4 px-3 py-1 text-xs font-semibold text-yellow-300 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">
+              PREMIUM PROJECT 2
+            </span>
           </div>
         </div>
+
         {/* Connector element */}
         <div className="hidden md:block w-[80px] flex items-center justify-center">
           <div className="w-[60px] h-[60px] rounded-full bg-gradient-to-r from-indigo-900 to-blue-800 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg">
             <div className="w-[30px] h-[4px] bg-white/40 rounded-full"></div>
           </div>
         </div>
-        {/* Right: Placeholder for future video */}
+
+        {/* Right: Video placeholder */}
         <div className="w-full md:w-[45%] flex items-center justify-center pl-4">
           <div className="w-full h-[320px] md:h-[400px] bg-black/40 border border-white/20 rounded-2xl flex items-center justify-center">
-            {/* Place your video here later */}
             <span className="text-white/60 text-lg">Video Coming Soon</span>
           </div>
         </div>
       </div>
+
     </motion.div>
       </section>
 

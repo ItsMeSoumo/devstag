@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -21,7 +20,7 @@ const PortalScrollDemo = () => {
       // Import GLTFLoader from the correct path
       import('three/examples/jsm/loaders/GLTFLoader').then(({ GLTFLoader }) => {
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xfefdfd);
+        scene.background = null;
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({
@@ -29,8 +28,10 @@ const PortalScrollDemo = () => {
           alpha: true,
         });
         
-        renderer.setClearColor(0xffffff, 1);
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        // renderer.setClearColor(0xffffff, 1);
+        scene.background = null; // Transparent background
+        const container = modelRef.current;
+        renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -68,7 +69,8 @@ const PortalScrollDemo = () => {
             const maxDim = Math.max(size.x, size.y, size.z);
             camera.position.z = maxDim * 2;
             
-            model.scale.set(0.5, 0.5, 0.5);
+            model.scale.set(1.2, 1.2, 1.2); // or adjust accordingly
+            camera.position.z = maxDim * 1.5; // Less than 2 for closer zoom
             
             // Animation functions
             let animationFrameId;
@@ -105,9 +107,10 @@ const PortalScrollDemo = () => {
             
             // Handle window resize
             const handleResize = () => {
-              camera.aspect = window.innerWidth / window.innerHeight;
+              camera.aspect = container.clientWidth / container.clientHeight;
               camera.updateProjectionMatrix();
-              renderer.setSize(window.innerWidth, window.innerHeight);
+              const container = modelRef.current;
+renderer.setSize(container.clientWidth, container.clientHeight);
             };
 
             ScrollTrigger.create({
@@ -164,60 +167,12 @@ const PortalScrollDemo = () => {
 
   return (
     <>
-        <style jsx>{`
-            canvas {
-                position: fixed;
-                top: 0;
-                left: 0;
-            }
-            h1 {
-                text-align: center;
-                font-size: 4rem;
-                font-weight: bold;
-                color: #fff;
-            }
-            .model {
-                position: fixed;
-                width: 100%;
-                height: 100vh;
-                background-color: #171e3a;
-            }
-            section {
-                position: relative;
-                width: 100vw;
-                height: 100vh;
-                background: #171e3a;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-        `}</style>
-
-
+    
       <div 
         ref={modelRef} 
-        className="model min-h-screen flex items-center justify-center bg-gray-100"
-        style={{ position: 'relative', width: '100%', height: '100vh' }}
-      >
-        <h1 className="absolute z-10 text-5xl font-bold text-gray-800">3D Model Showcase</h1>
-      </div>
+        className="w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden bg-transparent relative"
+      />
 
-      <section className='hero min-h-screen flex items-center justify-center bg-blue-600 text-white'>
-        <h1 className="text-5xl font-bold">Discover Amazing Features</h1>
-      </section>
-
-      <section className='info min-h-screen flex items-center justify-center bg-white'>
-        <h1 className="text-5xl font-bold text-gray-800">Detailed Information</h1>
-      </section>
-
-      <section className='scanner min-h-screen flex items-center justify-center bg-gray-900 text-white'>
-        <h1 className="text-5xl font-bold">Scan & Explore</h1>
-      </section>
-
-      <section className='outro min-h-screen flex items-center justify-center bg-indigo-700 text-white'>
-        <h1 className="text-5xl font-bold">Start Your Journey</h1>
-      </section>
     </>
   );
 };
