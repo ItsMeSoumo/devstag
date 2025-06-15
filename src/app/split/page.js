@@ -6,14 +6,18 @@ import { CustomEase } from "gsap/CustomEase";
 import SplitText from "gsap/SplitText";
 
 export default function SplitPage() {
+
+
   React.useEffect(() => {
     gsap.registerPlugin(CustomEase, SplitText);
     CustomEase.create("hop", ".8, 0, .3, 1");
+    CustomEase.create("pop", ".25, 1, .5, 1");
+    CustomEase.create("texture", "0.5, 0, 0.1, 1");
 
     const splitTextElements = (
       selector,
       type = "words,chars",
-      addFirstChar = false
+      addSpecialChars = false
     ) => {
       const elements = document.querySelectorAll(selector);
       elements.forEach((element) => {
@@ -26,15 +30,16 @@ export default function SplitPage() {
           splitText.chars.forEach((char, index) => {
             const originalText = char.textContent;
             char.innerHTML = `<span>${originalText}</span>`;
-            if (addFirstChar && index === 0) {
-              char.classList.add("first-char");
+            if (addSpecialChars) {
+              if (index === 0) char.classList.add("first-char"); // D
+              if (index >= 7 && index <= 8) char.classList.add("outro-char"); // 1 and 0
             }
           });
         }
       });
     };
 
-    // Split setup
+    // Split setup with special character marking
     splitTextElements(".intro-title h1", "words,chars", true);
     splitTextElements(".outro-title h1");
     splitTextElements(".tag p", "words");
@@ -42,27 +47,14 @@ export default function SplitPage() {
 
     const isMobile = window.innerWidth < 1000;
 
-    // Initial state
-    gsap.set([
-      ".split-overlay .intro-title .first-char span",
-      ".split-overlay .outro-title .char span",
-    ], { y: "0%" });
+    // Initial state - hide all characters
+    gsap.set(".preloader .intro-title .char span", { y: "-100%" });
+    gsap.set(".preloader .outro-title .char span", { y: "-100%" });
+    
+    // Only show D initially
+    gsap.set(".preloader .intro-title .char.first-char span", { y: "0%" });
 
-    // Hide all chars initially
-    gsap.set(".preloader .intro-title .char span", {
-      y: "-100%",
-    });
-
-    // Show first char initially
-    gsap.set(".preloader .intro-title .char.first-char span", {
-      y: "0%",
-    });
-
-    // Hide outro chars initially
-    gsap.set(".preloader .outro-title .char span", {
-      y: "-100%",
-    });
-
+    // Set final positions for overlay
     gsap.set(".split-overlay .intro-title .first-char", {
       x: isMobile ? "7.5rem" : "18rem",
       y: isMobile ? "-1rem" : "-2.75rem",
@@ -89,10 +81,7 @@ export default function SplitPage() {
     tags.forEach((tag, index) => {
       tl.to(
         tag.querySelectorAll("p .word"),
-        {
-          y: "0%",
-          duration: 0.75,
-        },
+        { y: "0%", duration: 0.75 },
         0.5 + index * 0.1
       );
     });
@@ -106,87 +95,123 @@ export default function SplitPage() {
       ease: "power3.out",
     }, 0.25)
 
-      // Show all intro title characters
-      .to(".preloader .intro-title .char span", {
-        y: "0%",
-        duration: 0.75,
-        stagger: 0.05,
-      }, 1)
+    // Reveal all DEVSTAG STUDIO letters
+    .to(".preloader .intro-title .char span", {
+      y: "0%",
+      duration: 0.75,
+      stagger: {
+        each: 0.05,
+        from: "start"
+      },
+    }, 1)
 
-      // Show outro title characters
-      .to(".preloader .outro-title .char span", {
-        y: "0%",
-        duration: 0.75,
-        stagger: 0.05,
-      }, 1.5)
+    // Reveal 10
+    .to(".preloader .outro-title .char span", {
+      y: "0%",
+      duration: 0.75,
+      stagger: 0.05,
+    }, 1.5)
 
-      // Immediately hide all characters except first char and outro (set display: none)
-      .call(() => {
-        gsap.set(".preloader .intro-title .char:not(.first-char)", {
+    // Prepare for separation - make other letters fade slightly
+    .to(".preloader .intro-title .char:not(.first-char):not(.outro-char)", {
+      opacity: 0.4,
+      filter: "blur(1px)",
+      duration: 0.5,
+      ease: "power2.in",
+    }, 2)
+
+    // D begins emerging from DEVSTAG
+    .to(".preloader .intro-title .first-char", {
+      scale: 1.4,
+      zIndex: 10,
+      duration: 0.3,
+      ease: "pop",
+    }, 2.5)
+    .to(".preloader .intro-title .first-char", {
+      x: isMobile ? "3rem" : "7rem",
+      y: isMobile ? "-0.8rem" : "-1.5rem",
+      duration: 0.6,
+      ease: "power2.out",
+    }, 2.8)
+
+    // 10 emerges from STUDIO
+    .to(".preloader .outro-title .char", {
+      scale: 1.3,
+      zIndex: 10,
+      duration: 0.3,
+      ease: "pop",
+    }, 2.7)
+    .to(".preloader .outro-title .char", {
+      x: isMobile ? "-2rem" : "-5rem",
+      duration: 0.6,
+      ease: "power2.out",
+    }, 3)
+
+    // Disintegrate remaining letters with staggered fade
+    .to(".preloader .intro-title .char:not(.first-char):not(.outro-char)", {
+      opacity: 0,
+      y: "20%",
+      filter: "blur(5px)",
+      duration: 0.8,
+      ease: "power2.in",
+      stagger: {
+        amount: 0.6,
+        from: "random"
+      },
+      onComplete: () => {
+        gsap.set(".preloader .intro-title .char:not(.first-char):not(.outro-char)", {
           display: "none"
         });
-      }, [], 2.5)
+      }
+    }, 3)
 
-      // Move first char and outro to their positions
-      .to(".preloader .intro-title .first-char", {
-        x: isMobile ? "9rem" : "21.25rem",
-        duration: 1,
-      }, 3.5)
+    // Final positioning with bounce
+    .to(".preloader .intro-title .first-char", {
+      x: isMobile ? "7.5rem" : "18rem",
+      y: isMobile ? "-1rem" : "-2.75rem",
+      scale: 0.75,
+      duration: 1.2,
+      ease: "elastic.out(1, 0.3)",
+    }, 4)
 
-      .to(".preloader .outro-title .char", {
-        x: isMobile ? "-3rem" : "-8rem",
-        duration: 1,
-      }, 3.5)
+    .to(".preloader .outro-title .char", {
+      x: isMobile ? "-3rem" : "-8rem",
+      fontSize: isMobile ? "6rem" : "14rem",
+      duration: 1.2,
+      ease: "elastic.out(1, 0.3)",
+      onComplete: () => {
+        gsap.set(".preloader", {
+          clipPath: "polygon(0 0, 100% 0, 100% 50%, 0 50%)",
+        });
+        gsap.set(".split-overlay", {
+          clipPath: "polygon(0 50%, 100% 50%, 100% 100%, 0 100%)",
+        });
+      }
+    }, 4)
 
-      // Final adjustments to first char and outro
-      .to(".preloader .intro-title .first-char", {
-        x: isMobile ? "7.5rem" : "18rem",
-        y: isMobile ? "-1rem" : "-2.75rem",
-        fontWeight: "900",
-        scale: 0.75,
-        duration: 0.75,
-      }, 4.5)
+    // Hero image reveal
+    .fromTo(".hero-img img", {
+      scale: 1.1,
+      opacity: 0,
+      filter: "blur(5px)",
+    }, {
+      scale: 1,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 1.25,
+      ease: "power4.out",
+    }, 5.5)
 
-      .to(".preloader .outro-title .char", {
-        x: isMobile ? "-3rem" : "-8rem",
-        fontSize: isMobile ? "6rem" : "14rem",
-        fontWeight: "500",
-        duration: 0.75,
-        onComplete: () => {
-          gsap.set(".preloader", {
-            clipPath: "polygon(0 0, 100% 0, 100% 50%, 0 50%)",
-          });
-          gsap.set(".split-overlay", {
-            clipPath: "polygon(0 50%, 100% 50%, 100% 100%, 0 100%)",
-          });
-        },
-      }, 4.5)
-
-      .fromTo(".hero-img img", {
-        scale: 1.1,
-        opacity: 0,
-        filter: "blur(5px)",
-      }, {
-        scale: 1,
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1.25,
-        ease: "power4.out",
-      }, 5.5)
-
-      .to(".container", {
-        clipPath: "polygon(0 48%, 100% 48%, 100% 52%, 0 52%)",
-        duration: 1,
-      }, 5);
+    .to(".container", {
+      clipPath: "polygon(0 48%, 100% 48%, 100% 52%, 0 52%)",
+      duration: 1,
+    }, 5);
 
     // Tag word-out
     tags.forEach((tag, index) => {
       tl.to(
         tag.querySelectorAll("p .word"),
-        {
-          y: "100%",
-          duration: 0.75,
-        },
+        { y: "100%", duration: 0.75 },
         5.5 + index * 0.1
       );
     });
@@ -197,23 +222,28 @@ export default function SplitPage() {
       duration: 1,
     }, 6)
 
-      .to(".container", {
-        clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
-        duration: 1,
-      }, 6)
+    .to(".container", {
+      clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+      duration: 1,
+    }, 6)
 
-      .to(".card", {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        duration: 1,
-        ease: "expo.out",
-      }, 6.5)
+    .to(".card", {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      duration: 1,
+      ease: "expo.out",
+    }, 6.5)
 
-      .to(".card h1 .char span", {
-        y: "0%",
-        duration: 0.75,
-        stagger: 0.05,
-        ease: "power2.out",
-      }, 6.75);
+    .to(".card h1 .char span", {
+      y: "0%",
+      duration: 0.75,
+      stagger: 0.05,
+      ease: "power2.out",
+    }, 6.75);
+
+    return () => {
+      // Cleanup
+      gsap.globalTimeline.clear();
+    };
   }, []);
 
   return (
