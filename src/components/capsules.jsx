@@ -2,20 +2,19 @@
 // import { useGSAP } from "@gsap/react";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+
+import { Spotlight } from "@/components/ui/spotlight";
+import LightRays from "@/components/ui/lightrays";
+import Squares from "@/components/ui/movingsquares";
 
 
 export default function Capsules() {
   const container = useRef();
     useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
-  const lenis = new Lenis();
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
 
   const cards = gsap.utils.toArray(".card");
   const introCard = cards[0];
@@ -188,9 +187,13 @@ export default function Capsules() {
 
   return (
     <>
-      <div ref={container}>
-      {/* Global styles */}
-      <style jsx>{`
+      <div ref={container} style={{ position: 'relative', backgroundColor: '#000' }}>
+        {/* Global background Squares */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+          <Squares direction="diagonal" speed={0.6} borderColor="rgba(255,255,255,0.08)" squareSize={46} hoverFillColor="rgba(127,60,255,0.12)" />
+        </div>
+        {/* Global styles */}
+        <style jsx>{`
  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
@@ -227,8 +230,9 @@ p {
 section {
   position: relative;
   width: 100vw;
-  background-color: #0f0f0f;
+  background-color: transparent; /* let global bg canvas show through */
   color: #fff;
+  z-index: 1; /* ensure content sits above bg canvas */
 }
 
 .intro,
@@ -379,8 +383,23 @@ section {
 
       {/* Sections */}
       <section className="intro">
-      <h1>We design spaces that don’t just exist.</h1>
-    </section>
+        {/* LightRays overlay inside intro */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#00ffff"
+            raysSpeed={1.5}
+            lightSpread={0.8}
+            rayLength={1.2}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
+          />
+        </div>
+        <h1 style={{ position: 'relative', zIndex: 10 }}>We design spaces that don’t just exist.</h1>
+      </section>
     <section className="cards">
       <div className="card">
         {/* <div className="card-marquee">

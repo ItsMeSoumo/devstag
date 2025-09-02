@@ -6,12 +6,11 @@ import DarkVeil from "@/components/ui/Darkveil";
 import { useRef, useEffect, useCallback, useMemo, useState } from "react";
 import useLenis from "@/hooks/useLenis";
 import Footer from "@/components/Footer";
-import { StickyScroll } from "@/components/ui/stcikyreveal";
-import { TracingBeam } from "@/components/ui/tracing-beam";
 import Intro from "@/components/Intro";
 import FloatingGallery from "@/components/FloatingGallery";
 import Capsules from "@/components/capsules";
 import PortalScrollDemo from "@/components/3D/vrmodel";
+import SecondSection from "@/components/secondsection"
 
 export default function Home() {
   // const [isLoaded, setIsLoaded] = useState(false);
@@ -23,6 +22,10 @@ export default function Home() {
   // Initialize Lenis for smooth scrolling
   const lenis = useLenis({
     autoRaf: true,
+    duration: 1.4,          // increase for slower interpolation (default ~1)
+    smoothWheel: true,
+    wheelMultiplier: 0.7,   // lower = less scroll per wheel tick
+    touchMultiplier: 0.9,   // lower = less scroll on touch
   });
 
   const worksRef = useRef(null);
@@ -134,9 +137,9 @@ export default function Home() {
   }, [handleScroll, lenis]);
 
   // Early return moved after all hooks
-    // if (!isLoaded) {
-    //   return <Loader onComplete={handleLoaderComplete} />;
-    // }
+  // if (!isLoaded) {
+  //   return <Loader onComplete={handleLoaderComplete} />;
+  // }
 
   return (
     <div style={{ maxWidth: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -147,105 +150,7 @@ export default function Home() {
           <Intro />
         </section>
         {/* Introducing Studio Devstag Section */}
-        <section id="studio" className="relative min-h-screen w-full overflow-hidden" style={{ position: 'sticky', top: 0, zIndex: 10 }}>
-  <div
-    className="absolute inset-0 w-full h-full z-0"
-    style={{
-      background: "#000",
-      backgroundImage: "url('/Devkia2.png')",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundBlendMode: "normal",
-      minHeight: '100vh'
-    }}
-  />
-
-  <div className="min-h-screen flex flex-col items-start justify-center text-white text-left relative z-10" style={{ paddingLeft: '6%', paddingRight: '6%' }}>
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="relative z-10 w-[88%] sm:w-[84%] md:w-[62%] lg:w-[48%] xl:w-[42%]"
-      style={{
-        marginTop: '18vh',
-        marginLeft: '6%'
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="mb-[2vh] sm:mb-[2.4vh] md:mb-[3vh] lg:mb-[3.6vh] xl:mb-[4vh]"
-        style={{ marginTop: '-6vh' }}
-      >
-        <span className="inline-block whitespace-nowrap py-[1.2vh] px-[4vw] sm:px-[3.2vw] md:px-[2.4vw] lg:px-[2vw] xl:px-[1.6vw] text-[clamp(1.4vh,3vw,2.2vh)] sm:text-[clamp(1.4vh,2.4vw,2.1vh)] md:text-[clamp(1.3vh,1.6vw,1.8vh)] lg:text-[clamp(1.2vh,1.2vw,1.6vh)] xl:text-[clamp(1.1vh,1vw,1.5vh)] font-medium text-yellow-300 tracking-widest uppercase bg-white/5 backdrop-blur-sm border-[0.2vw] md:border-[0.15vw] lg:border-[0.12vw] xl:border-[0.1vw] border-white/10 rounded-full">
-          NOW LIVE
-        </span>
-      </motion.div>
-
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-        className="font-bold tracking-tighter leading-[1.12] mb-[4vh] sm:mb-[4.8vh] md:mb-[5.6vh] lg:mb-[6.4vh] xl:mb-[7vh] text-[clamp(3.8vh,9vw,7.2vh)] sm:text-[clamp(4vh,8vw,7.4vh)] md:text-[clamp(4.4vh,5.6vw,7.6vh)] lg:text-[clamp(4.8vh,4.6vw,7.8vh)] xl:text-[clamp(5vh,4vw,8vh)]"
-      >
-        <span className="block">Introducing</span>
-        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white">
-          DevStag Studio
-        </span>
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="text-blue-100/80 font-light tracking-wide leading-[1.6] mb-[4vh] sm:mb-[4.8vh] md:mb-[5.6vh] lg:mb-[6.4vh] xl:mb-[7vh] text-[clamp(1.8vh,3.6vw,2.8vh)] sm:text-[clamp(1.8vh,3vw,2.6vh)] md:text-[clamp(1.7vh,2vw,2.4vh)] lg:text-[clamp(1.6vh,1.6vw,2.2vh)] xl:text-[clamp(1.5vh,1.4vw,2vh)] w-[92%] sm:w-[88%] md:w-[85%] lg:w-[82%] xl:w-[78%]"
-      >
-        Every project is artistically curated but grounded in real-time
-        performance, ensuring both aesthetics and usability.
-      </motion.p>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
-        className="flex flex-col sm:flex-row justify-start w-full gap-[4vw] sm:gap-[3.4vw] md:gap-[2.6vw] lg:gap-[2vw] xl:gap-[1.6vw]"
-        style={{ marginLeft: '1%' }}
-      >
-        <motion.button
-          whileHover={{ scale: 1.05, boxShadow: "0 0 3vw rgba(255, 46, 203, 0.45)" }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-gradient-to-r from-[#ff2ecb] to-[#d94cf7] rounded-full font-medium uppercase tracking-wider hover:opacity-90 transition-all w-full sm:w-auto py-[1.8vh] sm:py-[1.8vh] md:py-[1.6vh] lg:py-[1.4vh] xl:py-[1.2vh] px-[6vw] sm:px-[5vw] md:px-[4vw] lg:px-[3.2vw] xl:px-[2.8vw] text-[clamp(1.6vh,3.2vw,2.6vh)] sm:text-[clamp(1.6vh,2.6vw,2.4vh)] md:text-[clamp(1.5vh,1.8vw,2.2vh)] lg:text-[clamp(1.4vh,1.5vw,2vh)] xl:text-[clamp(1.3vh,1.3vw,1.8vh)]"
-        >
-          Start free trial
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-white/5 backdrop-blur-sm border-white/10 rounded-full font-medium uppercase tracking-wider hover:bg-white/20 transition-all w-full sm:w-auto border-[0.2vw] md:border-[0.15vw] lg:border-[0.12vw] xl:border-[0.1vw] py-[1.8vh] sm:py-[1.8vh] md:py-[1.6vh] lg:py-[1.4vh] xl:py-[1.2vh] px-[6vw] sm:px-[5vw] md:px-[4vw] lg:px-[3.2vw] xl:px-[2.8vw] text-[clamp(1.6vh,3.2vw,2.6vh)] sm:text-[clamp(1.6vh,2.6vw,2.4vh)] md:text-[clamp(1.5vh,1.8vw,2.2vh)] lg:text-[clamp(1.4vh,1.5vw,2vh)] xl:text-[clamp(1.3vh,1.3vw,1.8vh)]"
-        >
-          Watch the Keynote
-        </motion.button>
-      </motion.div>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1, duration: 1.5 }}
-      className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent"
-    >
-      <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-blue-500/20 blur-xl" 
-        style={{
-          width: '50%',
-          height: '2vh'
-        }}
-      />
-    </motion.div>
-  </div>
-        </section>
+        <SecondSection />
 
         {/* 3d VR rotation section */}
         <section
@@ -279,7 +184,7 @@ export default function Home() {
             background: 'radial-gradient(ellipse 60% 90% at 50% 0%,rgb(0, 0, 0) 0%, #000 100%)'
           }} />
 
-          {/* Additional solid background layer */}
+         
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -289,17 +194,19 @@ export default function Home() {
 
             <div className="relative w-[100vw]" >
               <PortalScrollDemo />
-              {/* <span className="absolute top-4 left-4 px-3 py-1 text-xs font-semibold text-yellow-300 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">
-                PREMIUM PROJECT 2
-              </span> */}
+              
             </div>
 
           </motion.div>
         </section>
 
+        {/* Sticky Videos 1by1 showing section */}
+        <section style={{ position: 'relative', zIndex: 2000, }}>
+          <Capsules />
+        </section>
 
-                {/* Magic Bento Box Section */}
-        <section
+        {/* Magic Bento Box Section */}
+        {/* <section
           className="relative w-full overflow-hidden"
           style={{
             background: 'transparent',
@@ -337,7 +244,7 @@ export default function Home() {
               glowColor="132, 0, 255" 
             />
           </div>
-        </section> 
+        </section>  */}
 
         {/* Violet 3 boxes section */}
         {/* <TestimonialsSection /> */}
@@ -354,8 +261,8 @@ export default function Home() {
         }}>
           <svg style={{ display: "none" }}>
             <filter id="wavy-distort">
-              <feTurbulence id="turb" baseFrequency="0.02 0.03" numOctaves="2" seed="2" type="fractalNoise" result="turb"/>
-              <feDisplacementMap in2="turb" in="SourceGraphic" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+              <feTurbulence id="turb" baseFrequency="0.02 0.03" numOctaves="2" seed="2" type="fractalNoise" result="turb" />
+              <feDisplacementMap in2="turb" in="SourceGraphic" scale="18" xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </svg>
           <FloatingGallery />
