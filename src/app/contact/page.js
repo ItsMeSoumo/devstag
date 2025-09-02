@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import moonbg from "../../assets/moonbg.png";
+import introbg from "@/assets/introbg.png";
 import Intro from "@/components/Intro";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -85,7 +85,7 @@ export default function ContactPage() {
       <div className="image-container" style={{ position: 'absolute', top: 0, left: 0, zIndex: 2, width: '100vw', height: '100vh', overflow: 'hidden' }}>
         <Image width={400} height={300} 
           ref={imgRef}
-          src={moonbg.src}
+          src={introbg}
           alt="Background"
           style={{ height: '100vh', width: '100%', objectFit: 'cover', objectPosition: 'center' }}
         />
