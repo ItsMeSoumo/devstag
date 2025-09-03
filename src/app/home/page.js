@@ -153,7 +153,7 @@ export default function Home() {
         <SecondSection />
 
         {/* 3d VR rotation section */}
-        <section
+        {/* <section
           ref={worksRef}
           className="relative w-full py-20 px-0 mt-[50px] rounded-t-[40px] ml-4 shadow-2xl will-change-transform overlap-section"
           style={{
@@ -198,7 +198,7 @@ export default function Home() {
             </div>
 
           </motion.div>
-        </section>
+        </section> */}
 
         {/* Sticky Videos 1by1 showing section */}
         <section style={{ position: 'relative', zIndex: 2000, }}>
