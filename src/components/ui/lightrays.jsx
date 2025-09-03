@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Renderer, Program, Triangle, Mesh } from "ogl";
 
-const DEFAULT_COLOR = "#ffffff";
+const DEFAULT_COLOR = "#8C2EB8";
 
 const hexToRgb = (hex) => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

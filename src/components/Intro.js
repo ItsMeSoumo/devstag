@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import intro from "@/assets/introbg.png";
+import vrman from "@/assets/vrman.png";
 import studioDevstag from "@/assets/logo3.png";
 import gsap from "gsap";
 import { FaArrowUpRightFromSquare, FaGlobe } from "react-icons/fa6";
@@ -9,6 +10,17 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Navbar from "@/components/Navbar";
 import { logoData } from "@/lib/intropath3";
+import { Orbitron, Michroma } from "next/font/google";
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const michroma = Michroma({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const ScrollHero = () => {
   // Use a single percentage-based offset that scales with the logo container size.
@@ -45,7 +57,7 @@ const ScrollHero = () => {
       // Single offset applied for all widths (percentage of container size)
       // Chosen as a balanced midpoint of prior values.
       // const pct = { x: 0.02, y: 0.21 };
-      const pct = { x: 0, y: -0.24 };
+      const pct = { x: 0, y: -0.26 };
 
       const offsetX = logoDimensions.width * pct.x;
       const offsetY = logoDimensions.height * pct.y;
@@ -197,7 +209,7 @@ const ScrollHero = () => {
   }, []);
 
   return (
-  <div>
+  <div className={orbitron.className}>
     <style jsx>{`
 
      img {
@@ -261,7 +273,7 @@ const ScrollHero = () => {
           top: 30%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 18vw;
+          width: 28vw;
           height: 10vh;
           z-index: 2;
         }
@@ -437,9 +449,15 @@ const ScrollHero = () => {
           backgroundSize: '3vh',
           // boxShadow: '0 4px 32px 0 rgba(127,60,255,0.10)',
           // border: '1.5px solid rgba(255,255,255,0.13)',
-          padding: '4vh 4vw',
+          padding: '3vh 2vw',
           position: 'relative',
+          overflow: 'hidden',
         }} >
+
+        {/* VR man inside glass card - larger and touching bottom */}
+        <div className="pointer-events-none" style={{ position: 'absolute', left: '52%', bottom: '-7vh', transform: 'translateX(-50%)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', zIndex: 0, width: '100%', height: '100%' }}>
+          <Image src={vrman} alt="VR Man" priority style={{ width: '57vw', height: '75vh' }} />
+        </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 90 }}>
           <Navbar />
@@ -447,7 +465,67 @@ const ScrollHero = () => {
         
         <div className="flex w-full items-end justify-between sm:mt-[12vh] md:mt-[15vh] lg:mt-[18vh] xl:mt-[22vh] sm:mb-[8vh] md:mb-[10vh] lg:mb-[12vh] xl:mb-[14vh]" style={{ display: 'flex' }}>
 
-        <button onClick={() => {
+        {/* Left column: two glass cards + existing CTA button */}
+        <div className="flex flex-col sm:ml-[4vw] md:ml-[4vw] lg:ml-[4vw] xl:ml-[4vw] sm:gap-[4vh] md:gap-[4.5vh] lg:gap-[5vh] xl:gap-[5.5vh]">
+          {/* Upper glass card with circular logo */}
+          <div className="sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{
+            boxSizing: 'border-box',
+            borderRadius: '1.6vh',
+            background: 'rgba(255,255,255,0.05)',
+            backdropFilter: 'blur(1.2vh)',
+            WebkitBackdropFilter: 'blur(1.2vh)',
+            border: '0.2vh solid rgba(255, 255, 255, 0.14)',
+            boxShadow: '0 0.3vh 2vh 0 rgba(186,131,255,0.08)',
+            padding: '2.4vh 2.4vw',
+          }}>
+            <div className="flex items-center gap-[1.8vw]">
+              <div className="shrink-0" style={{
+                width: '9.5vh',
+                height: '9.5vh',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, rgba(127,60,255,0.35), rgba(255,78,205,0.30))',
+                boxShadow: '0 0.3vh 1.4vh rgba(186,131,255,0.12)'
+              }}>
+                <Image src={studioDevstag} alt="DevStag" width={64} height={64} style={{ width: '64%', height: '64%', objectFit: 'contain' }} />
+              </div>
+              <div className="flex flex-col items-start">
+                {/* Line 1: Michroma (thin/small) */}
+                <p className={`${michroma.className} sm:text-[1.1vw] md:text-[0.9vw] lg:text-[0.6vw] xl:text-[0.55vw]`} style={{ color: '#fff', opacity: 0.7, margin: 0, letterSpacing: '0.1em', textTransform: 'uppercase' }}>New Collection</p>
+                {/* Line 2: Orbitron bold */}
+                <p className="sm:text-[3.4vw] md:text-[2.8vw] lg:text-[1.9vw] xl:text-[1.7vw]" style={{ color: '#fff', margin: 0, fontWeight: 900, lineHeight: 1.02 }}>Gaming Studio</p>
+                {/* Line 3: Michroma (thin/small) */}
+                <p className={`${michroma.className} sm:text-[1.1vw] md:text-[0.9vw] lg:text-[0.6vw] xl:text-[0.55vw]`} style={{ color: '#fff', opacity: 0.6, margin: 0, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Explore Studio →</p>
+              </div>
+            </div>
+          </div>
+
+          {/* World Class Agency pill only */}
+          <div className="sm:mt-[2vh] md:mt-[3vh] lg:mt-[4vh] xl:mt-[4.5vh] sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{ marginLeft: '-4vw', padding: '0vw' }}>
+            <div className="inline-flex items-center sm:px-[2.2vw] sm:py-[0.7vh] sm:text-[1.6vw] md:px-[1.9vw] md:py-[0.6vh] md:text-[1.3vw] lg:px-[1.4vw] lg:py-[0.5vh] lg:text-[0.95vw] xl:px-[1.2vw] xl:py-[0.45vh] xl:text-[0.85vw]" style={{
+              boxSizing: 'border-box',
+              borderRadius: '0.6vh',
+              background: 'rgba(255,255,255,0.12)',
+              backdropFilter: 'blur(2vh)',
+              WebkitBackdropFilter: 'blur(2vh)',
+              border: '0.2vh solid rgba(255, 255, 255, 0.25)',
+              color: '#fff',
+              padding: '1vw',
+              fontWeight: 400,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1vw',
+              boxShadow: '0 0.5vh 3vh 0 rgba(186,131,255,0.10)',
+              cursor: 'default',
+              userSelect: 'none',
+            }}>
+              <FaGlobe className="sm:text-[1.8vw] sm:mr-[1.5vw] md:text-[1.6vw] md:mr-[1.2vw] lg:text-[1.2vw] lg:mr-[0.9vw] xl:text-[1vw] xl:mr-[0.8vw]" style={{ color: '#fff' }} />
+              WORLD CLASS AGENCY
+            </div>
+          </div>
+
+          <button onClick={() => {
           const target = document.getElementById('studio');
           if (target) {
             const startPosition = window.pageYOffset;
@@ -473,7 +551,7 @@ const ScrollHero = () => {
             
             window.requestAnimationFrame(step);
           }
-        }} className="rounded-full inline-flex items-center sm:ml-[4vw] md:ml-[4vw] lg:ml-[4vw] xl:ml-[4vw] sm:w-[44vw] md:w-[34vw] lg:w-[24vw] xl:w-[20vw] sm:px-[4vw] md:px-[3vw] lg:px-[2.4vw] xl:px-[2vw] sm:py-[1.6vh] md:py-[1.4vh] lg:py-[1.2vh] xl:py-[1.1vh] sm:text-[2.6vw] md:text-[1.9vw] lg:text-[1.1vw] xl:text-[1vw] gap-[1.2vw]" style={{
+        }} className="rounded-full inline-flex items-center sm:w-[44vw] md:w-[34vw] lg:w-[24vw] xl:w-[20vw] sm:px-[4vw] md:px-[3vw] lg:px-[2.4vw] xl:px-[2vw] sm:py-[1.6vh] md:py-[1.4vh] lg:py-[1.2vh] xl:py-[1.1vh] sm:text-[2.6vw] md:text-[1.9vw] lg:text-[1.1vw] xl:text-[1vw] gap-[1.2vw]" style={{
           borderRadius: '50vh',
           fontWeight: 700,
           background: '#fff',
@@ -494,32 +572,38 @@ const ScrollHero = () => {
             <FaArrowUpRightFromSquare className="sm:w-[1.8vw] sm:h-[1.8vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.2vw] lg:h-[1.2vw] xl:w-[1vw] xl:h-[1vw]" style={{ color: '#fff' }} />
           </span>
         </button>
+        </div>
 
-        <div className="sm:mr-[6vw] md:mr-[8vw] lg:mr-[10vw] xl:mr-[12vw]" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-          <p className="sm:text-[2.5vw] sm:max-w-[40vw] sm:mb-[2vh] md:text-[2.2vw] md:max-w-[35vw] md:mb-[1.8vh] lg:text-[1.8vw] lg:max-w-[30vw] lg:mb-[1.5vh] xl:text-[1.5vw] xl:max-w-[25vw] xl:mb-[1.2vh]" style={{ margin: 0, color: '#fff', textAlign: 'right', fontWeight: 400 }}>
-            Explore how we transform digital brands with our creative vision. We craft unique digital experiences that captivate.
+        {/* Right column: tagline above, smaller box below */}
+        <div className="sm:mr-[2vw] md:mr-[3vw] lg:mr-[4vw] xl:mr-[4.5vw]" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+          <p className="sm:text-[2vw] sm:max-w-[36vw] sm:mb-[3vh] md:text-[1.7vw] md:max-w-[32vw] md:mb-[3.5vh] lg:text-[1.3vw] lg:max-w-[26vw] lg:mb-[4vh] xl:text-[1.1vw] xl:max-w-[22vw] xl:mb-[4.5vh]" style={{ margin: 0, color: '#fff', textAlign: 'right' }}>
+            <span style={{ fontWeight: 800 }}>We design</span>
+            <span className={`${michroma.className}`} style={{ fontWeight: 200, fontSize: '0.85em' }}> standout digital experiences that elevate brands.</span>
           </p>
-          <div className="sm:w-[28vw] sm:px-[3vw] sm:py-[0.8vh] sm:text-[1.8vw] md:w-[25vw] md:px-[2.5vw] md:py-[0.7vh] md:text-[1.6vw] lg:w-[22vw] lg:px-[2vw] lg:py-[0.6vh] lg:text-[1.4vw] xl:w-[18vw] xl:px-[1.8vw] xl:py-[0.5vh] xl:text-[1.2vw]" style={{
-            boxSizing: 'border-box',
-            borderRadius: '50vh',
-            background: 'rgba(255,255,255,0.12)',
-            backdropFilter: 'blur(2vh)',
-            WebkitBackdropFilter: 'blur(2vh)',
-            border: '0.2vh solid rgba(255, 255, 255, 0.25)',
-            color: '#fff',
-            fontWeight: 400,
-            textTransform: 'uppercase',
-            letterSpacing: '0.1vw',
-            boxShadow: '0 0.5vh 3vh 0 rgba(186,131,255,0.10)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '1vh',
-            cursor: 'default',
-            userSelect: 'none',
-          }}>
-            <FaGlobe className="sm:text-[1.8vw] sm:mr-[1.5vw] md:text-[1.6vw] md:mr-[1.2vw] lg:text-[1.4vw] lg:mr-[1vw] xl:text-[1.2vw] xl:mr-[0.8vw]" style={{ color: '#fff' }} />
-            WORLD CLASS AGENCY
+          {/* Right box: relative wrapper + separate glass layer + overlay image */}
+          <div className="relative aspect-square sm:w-[16vw] md:w-[14vw] lg:w-[11.5vw] xl:w-[10vw] mt-[10vh] overflow-visible">
+            {/* Glass background layer */}
+            <div className="absolute inset-0 z-[1]" style={{
+              boxSizing: 'border-box',
+              borderRadius: '1.2vh',
+              background: 'rgba(255,255,255,0.06)',
+              backdropFilter: 'blur(2vh)',
+              WebkitBackdropFilter: 'blur(2vh)',
+              border: '0.2vh solid rgba(255, 255, 255, 0.20)',
+              boxShadow: '0 0.5vh 3vh 0 rgba(186,131,255,0.10)',
+              padding: '0.6vh 0.6vw',
+            }} />
+            {/* Image overlay layer */}
+            <div className="absolute inset-0 z-[2] pointer-events-none overflow-visible">
+              <div className="relative w-full h-full">
+                <Image
+                  src="/redcamera.png"
+                  alt="Red Camera"
+                  fill
+                  style={{ objectFit: 'contain', transform: 'translateX(30%) translateY(-45%) scale(1.45)', transformOrigin: 'top right' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -532,11 +616,6 @@ const ScrollHero = () => {
      </div>
 
     </section>
-
-
-    {/* <section className="outro">
-      <p>Outro Section</p>
-    </section> */}
   </div>
   );
 };
