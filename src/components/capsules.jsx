@@ -399,18 +399,15 @@ section {
               className="custom-rays"
             />
           </div> */}
-          <div style={{ width: '100%', height: '50vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center' }}>
-            <div style={{ width: 320, height: 320 }}>
-              {/* <Orb
-                hoverIntensity={0.5}
-                rotateOnHover={true}
-                hue={0}
-                forceHoverState={false}
-              /> */}
-            </div>
-            <h1 style={{ position: 'relative', zIndex: 10 }}>We design spaces that don’t just exist.</h1>
+          <div style={{ width: '100%', height: '50vh', position: 'relative' }}>
+            <Orb
+              hoverIntensity={0.5}
+              rotateOnHover={true}
+              hue={0}
+              forceHoverState={false}
+            />
           </div>
-          
+
         </section>
         <section className="cards">
           {/* <div className="card">
