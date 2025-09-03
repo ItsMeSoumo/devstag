@@ -201,9 +201,9 @@ export default function Home() {
         </section>
 
         {/* Sticky Videos 1by1 showing section */}
-        {/* <section style={{ position: 'relative', zIndex: 2000, }}>
+        <section style={{ position: 'relative', zIndex: 2000, }}>
           <Capsules />
-        </section> */}
+        </section>
 
         {/* Magic Bento Box Section */}
         {/* <section

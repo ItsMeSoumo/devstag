@@ -397,12 +397,12 @@ section {
           </div> */}
           <div style={{ width: '100%', height: '50vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center' }}>
             <div style={{ width: 320, height: 320 }}>
-              <Orb
+              {/* <Orb
                 hoverIntensity={0.5}
                 rotateOnHover={true}
                 hue={0}
                 forceHoverState={false}
-              />
+              /> */}
             </div>
             <h1 style={{ position: 'relative', zIndex: 10 }}>We design spaces that don’t just exist.</h1>
           </div>
@@ -542,14 +542,14 @@ section {
         </section>
         <section className="outro">
           <section className="relative w-full h-[100vh] overflow-hidden">
-            <Plasma
+            {/* <Plasma
               color="#9032c3"
               speed={0.6}
               direction="forward"
               scale={1.1}
               opacity={0.8}
               mouseInteractive={false}
-            />
+            /> */}
             <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold">
               Architecture reimagined for the virtual age.
             </h1>
