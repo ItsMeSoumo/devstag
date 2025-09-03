@@ -7,6 +7,7 @@ import { SplitText } from "gsap/SplitText";
 
 import { Spotlight } from "@/components/ui/spotlight";
 import LightRays from "@/components/ui/lightrays";
+import Squares from "@/components/ui/movingsquares";
 import Plasma from "@/components/ui/plasma";
 import Orb from "@/components/ui/orb";
 
@@ -188,7 +189,10 @@ export default function Capsules() {
   return (
     <>
       <div ref={container} style={{ position: 'relative', backgroundColor: '#000' }}>
-        {/* Removed Squares background */}
+        {/* Global background Squares */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+          <Squares direction="diagonal" speed={0.6} borderColor="rgba(255,255,255,0.08)" squareSize={46} hoverFillColor="rgba(127,60,255,0.12)" />
+        </div>
         {/* Global styles */}
         <style jsx>{`
  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -542,14 +546,14 @@ section {
         </section>
         <section className="outro">
           <section className="relative w-full h-[100vh] overflow-hidden">
-            {/* <Plasma
+            <Plasma
               color="#9032c3"
               speed={0.6}
               direction="forward"
               scale={1.1}
               opacity={0.8}
               mouseInteractive={false}
-            /> */}
+            />
             <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold">
               Architecture reimagined for the virtual age.
             </h1>
