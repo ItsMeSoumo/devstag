@@ -7,7 +7,6 @@ import { SplitText } from "gsap/SplitText";
 
 import { Spotlight } from "@/components/ui/spotlight";
 import LightRays from "@/components/ui/lightrays";
-import Squares from "@/components/ui/movingsquares";
 import Plasma from "@/components/ui/plasma";
 import Orb from "@/components/ui/orb";
 
@@ -189,10 +188,7 @@ export default function Capsules() {
   return (
     <>
       <div ref={container} style={{ position: 'relative', backgroundColor: '#000' }}>
-        {/* Global background Squares */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
-          <Squares direction="diagonal" speed={0.6} borderColor="rgba(255,255,255,0.08)" squareSize={46} hoverFillColor="rgba(127,60,255,0.12)" />
-        </div>
+        {/* Removed Squares background */}
         {/* Global styles */}
         <style jsx>{`
  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
