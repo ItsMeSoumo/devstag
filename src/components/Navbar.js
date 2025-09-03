@@ -44,25 +44,25 @@ export default function Navbar() {
         >
           <Link href="/" className="group relative">
             <span className="text-white group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300 md:text-[1.6vh] lg:text-[1.8vh] xl:text-[2vh] uppercase tracking-wider font-montserrat">
-              [  Home  ]
+                Home  
             </span>
             <span className="absolute -bottom-[0.5vh] md:-bottom-[0.4vh] lg:-bottom-[0.3vh] xl:-bottom-[0.2vh] left-0 w-0 h-[0.2vh] md:h-[0.18vh] lg:h-[0.16vh] xl:h-[0.14vh] bg-gradient-to-r from-cyan-300 to-blue-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link href="/about" className="group relative">
             <span className="text-white group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300 md:text-[1.6vh] lg:text-[1.8vh] xl:text-[2vh] uppercase tracking-wider font-montserrat">
-              [  About  ]
+                About  
             </span>
             <span className="absolute -bottom-[0.5vh] md:-bottom-[0.4vh] lg:-bottom-[0.3vh] xl:-bottom-[0.2vh] left-0 w-0 h-[0.2vh] md:h-[0.18vh] lg:h-[0.16vh] xl:h-[0.14vh] bg-gradient-to-r from-cyan-300 to-blue-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link href="/services" className="group relative">
             <span className="text-white group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300 md:text-[1.6vh] lg:text-[1.8vh] xl:text-[2vh] uppercase tracking-wider font-montserrat">
-              [  Services  ]
+                Services  
             </span>
             <span className="absolute -bottom-[0.5vh] md:-bottom-[0.4vh] lg:-bottom-[0.3vh] xl:-bottom-[0.2vh] left-0 w-0 h-[0.2vh] md:h-[0.18vh] lg:h-[0.16vh] xl:h-[0.14vh] bg-gradient-to-r from-cyan-300 to-blue-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link href="/contact" className="group relative">
             <span className="text-white group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300 md:text-[1.6vh] lg:text-[1.8vh] xl:text-[2vh] uppercase tracking-wider font-montserrat">
-              [  Contact  ]
+                Contact  
             </span>
             <span className="absolute -bottom-[0.5vh] md:-bottom-[0.4vh] lg:-bottom-[0.3vh] xl:-bottom-[0.2vh] left-0 w-0 h-[0.2vh] md:h-[0.18vh] lg:h-[0.16vh] xl:h-[0.14vh] bg-gradient-to-r from-cyan-300 to-blue-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
