@@ -146,9 +146,9 @@ export default function Home() {
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
 
         {/* Intro Section */}
-        {/* <section style={{ position: 'relative', zIndex: 2000 }}>
+        <section style={{ position: 'relative', zIndex: 2000 }}>
           <Intro />
-        </section> */}
+        </section>
         {/* Introducing Studio Devstag Section */}
         <SecondSection />
 
@@ -201,9 +201,9 @@ export default function Home() {
         </section>
 
         {/* Sticky Videos 1by1 showing section */}
-        <section style={{ position: 'relative', zIndex: 2000, }}>
+        {/* <section style={{ position: 'relative', zIndex: 2000, }}>
           <Capsules />
-        </section>
+        </section> */}
 
         {/* Magic Bento Box Section */}
         {/* <section
