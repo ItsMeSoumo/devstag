@@ -385,10 +385,10 @@ section {
         {/* Sections */}
         <section className="intro">
           {/* LightRays overlay inside intro */}
-          {/* <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <LightRays
               raysOrigin="top-center"
-              raysColor="#00ffff"
+              raysColor="#8C2EB8"
               raysSpeed={1.5}
               lightSpread={0.8}
               rayLength={1.2}
@@ -398,16 +398,9 @@ section {
               distortion={0.05}
               className="custom-rays"
             />
-          </div> */}
+          </div>
           <div style={{ width: '100%', height: '90vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center' }}>
-            {/* <div style={{ width: 320, height: 320 }}>
-              <Orb
-                hoverIntensity={0.5}
-                rotateOnHover={true}
-                hue={0}
-                forceHoverState={false}
-              />
-            </div> */}
+            {/* 3 */}
             <h1 style={{ position: 'relative', zIndex: 10 }}>We design spaces that don’t just exist.</h1>
           </div>
           

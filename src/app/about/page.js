@@ -399,7 +399,7 @@ export default function AboutPage() {
               {/* Large Feature Photo */}
               <div className="relative h-[320px] sm:h-[420px] md:h-[520px] rounded-3xl overflow-hidden border border-white/10 bg-white/5">
                 <img
-                  src="/hero-img.jpg"
+                  src="/images/floating_1.jpg"
                   alt="Studio portrait or hero visual"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="eager"
@@ -414,7 +414,7 @@ export default function AboutPage() {
               <div className="grid gap-6">
                 <div className="relative h-[200px] sm:h-[220px] md:h-[248px] rounded-3xl overflow-hidden border border-white/10 bg-white/5">
                   <img
-                    src="/hands.png"
+                    src="/images/floating_2.jpg"
                     alt="Behind the scenes craft detail"
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
@@ -426,7 +426,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative h-[200px] sm:h-[220px] md:h-[248px] rounded-3xl overflow-hidden border border-white/10 bg-white/5">
                   <img
-                    src="/devstag-hero-orb.png"
+                    src="/images/floating_3.jpg"
                     alt="Brand element or ambiance"
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
