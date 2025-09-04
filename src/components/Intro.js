@@ -1,15 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 import Image from "next/image";
 import intro from "@/assets/introbg.png";
 import vrman from "@/assets/vrman.png";
 import studioDevstag from "@/assets/logo3.png";
 import gsap from "gsap";
-import { FaArrowUpRightFromSquare, FaGlobe, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare, FaGlobe } from "react-icons/fa6";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-
 import Navbar from "@/components/Navbar";
 import { logoData } from "@/lib/intropath3";
 import { Orbitron, Michroma } from "next/font/google";
@@ -27,33 +25,9 @@ const michroma = Michroma({
 const ScrollHero = () => {
   // Use a single percentage-based offset that scales with the logo container size.
   // This keeps the mask aligned consistently across all widths without branching.
-  // Auto-rotate bento slides (one visible at a time)
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [glowLeft, setGlowLeft] = useState(false);
-  const [glowRight, setGlowRight] = useState(false);
-
-  const handlePrev = () => {
-    setActiveIndex((i) => (i + 2) % 3);
-    setGlowLeft(true);
-    setTimeout(() => setGlowLeft(false), 200);
-  };
-
-  const handleNext = () => {
-    setActiveIndex((i) => (i + 1) % 3);
-    setGlowRight(true);
-    setTimeout(() => setGlowRight(false), 200);
-  };
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setActiveIndex((i) => (i + 1) % 3);
-    }, 6000);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     // Kill existing triggers when breakpoints change to avoid stacking
     ScrollTrigger.getAll().forEach((t) => t.kill());
     const lenis = new Lenis();
@@ -329,6 +303,8 @@ const ScrollHero = () => {
   -webkit-text-fill-color: unset !important;
   text-align: center;
 }
+          transform-origin: center 0%;
+        }
         
         .outro {
           display: flex;
@@ -484,15 +460,15 @@ const ScrollHero = () => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 90 }}>
-    <Navbar />
-  </div>
+          <Navbar />
+        </div>
         
-        <div className="flex w-full items-end justify-between sm:mt-[10vh] md:mt-[13vh] lg:mt-[16vh] xl:mt-[20vh] sm:mb-[8vh] md:mb-[10vh] lg:mb-[12vh] xl:mb-[14vh]" style={{ display: 'flex' }}>
+        <div className="flex w-full items-end justify-between sm:mt-[12vh] md:mt-[15vh] lg:mt-[18vh] xl:mt-[22vh] sm:mb-[8vh] md:mb-[10vh] lg:mb-[12vh] xl:mb-[14vh]" style={{ display: 'flex' }}>
 
-        {/* Left column: two glass cards */}
-        <div className="flex flex-col sm:ml-[4vw] md:ml-[4vw] lg:ml-[4vw] xl:ml-[4vw] sm:gap-[2vh] md:gap-[2.5vh] lg:gap-[3vh] xl:gap-[3.5vh]">
+        {/* Left column: two glass cards + existing CTA button */}
+        <div className="flex flex-col sm:ml-[4vw] md:ml-[4vw] lg:ml-[4vw] xl:ml-[4vw] sm:gap-[4vh] md:gap-[4.5vh] lg:gap-[5vh] xl:gap-[5.5vh]">
           {/* Upper glass card with circular logo */}
-          <div className="sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw] sm:mt-[3vh] md:mt-[3.5vh] lg:mt-[4vh] xl:mt-[4.5vh]" style={{
+          <div className="sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{
             boxSizing: 'border-box',
             borderRadius: '1.6vh',
             background: 'rgba(255,255,255,0.05)',
@@ -516,25 +492,18 @@ const ScrollHero = () => {
                 <Image src={studioDevstag} alt="DevStag" width={64} height={64} style={{ width: '64%', height: '64%', objectFit: 'contain' }} />
               </div>
               <div className="flex flex-col items-start">
-                {/* Badge */}
-                <p className={`${michroma.className} sm:text-[0.9vw] md:text-[0.8vw] lg:text-[0.6vw] xl:text-[0.55vw]`} style={{ margin: 0, color: '#fff', letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.8 }}>New Collection</p>
-                {/* Headline */}
-                <h2 className="mt-[1.2vh] sm:text-[3.4vw] md:text-[2.8vw] lg:text-[1.9vw] xl:text-[1.7vw] font-black leading-[1.02]" style={{ margin: 0 }}>
-                  <span className="bg-gradient-to-r from-white via-fuchsia-300 to-violet-300 bg-clip-text text-transparent">Gaming Studio</span>
-                </h2>
-                {/* CTA */}
-                <a href="/studio" aria-label="Explore Studio" className="group mt-[1.8vh] inline-flex items-center gap-[0.8vw] rounded-full border border-white/20 bg-white/5 px-[1.2vw] py-[1vh] text-white/90 hover:text-white transition-all duration-300 hover:border-white/40">
-                  <span className={`${michroma.className} sm:text-[1vw] md:text-[0.9vw] lg:text-[0.7vw] xl:text-[0.65vw]`} style={{ letterSpacing: '0.08em', textTransform: 'uppercase' }}>Explore Studio</span>
-                  <span className="relative flex h-[1.6vw] w-[1.6vw] items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-400 to-violet-500 text-black">
-                    <FaArrowUpRightFromSquare className="text-[0.9vw] transition-transform duration-300 group-hover:translate-x-[0.15vw] group-hover:-translate-y-[0.15vw]" />
-                  </span>
-                </a>
+                {/* Line 1: Michroma (thin/small) */}
+                <p className={`${michroma.className} sm:text-[1.1vw] md:text-[0.9vw] lg:text-[0.6vw] xl:text-[0.55vw]`} style={{ color: '#fff', opacity: 0.7, margin: 0, letterSpacing: '0.1em', textTransform: 'uppercase' }}>New Collection</p>
+                {/* Line 2: Orbitron bold */}
+                <p className="sm:text-[3.4vw] md:text-[2.8vw] lg:text-[1.9vw] xl:text-[1.7vw]" style={{ color: '#fff', margin: 0, fontWeight: 900, lineHeight: 1.02 }}>Gaming Studio</p>
+                {/* Line 3: Michroma (thin/small) */}
+                <p className={`${michroma.className} sm:text-[1.1vw] md:text-[0.9vw] lg:text-[0.6vw] xl:text-[0.55vw]`} style={{ color: '#fff', opacity: 0.6, margin: 0, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Explore Studio →</p>
               </div>
-              </div>
+            </div>
           </div>
 
           {/* World Class Agency pill only */}
-          <div className="sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{ marginLeft: '-4vw', padding: '0vw' }}>
+          <div className="sm:mt-[2vh] md:mt-[3vh] lg:mt-[4vh] xl:mt-[4.5vh] sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{ marginLeft: '-4vw', padding: '0vw' }}>
             <div className="inline-flex items-center sm:px-[2.2vw] sm:py-[0.7vh] sm:text-[1.6vw] md:px-[1.9vw] md:py-[0.6vh] md:text-[1.3vw] lg:px-[1.4vw] lg:py-[0.5vh] lg:text-[0.95vw] xl:px-[1.2vw] xl:py-[0.45vh] xl:text-[0.85vw]" style={{
               boxSizing: 'border-box',
               borderRadius: '0.6vh',
@@ -556,204 +525,85 @@ const ScrollHero = () => {
             </div>
           </div>
 
-          {/* Tagline text block */}
-          <div className="sm:w-[60vw] md:w-[44vw] lg:w-[30vw] xl:w-[26vw]" style={{ marginLeft: 0, marginTop: '2vh', paddingLeft: '2.4vw' }}>
-            <div style={{ 
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '0.5vh'
-            }}>
-              {/* Ambient glow behind text */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '15%',
-                transform: 'translate(-50%, -50%)',
-                width: '80%',
-                height: '120%',
-                background: 'radial-gradient(ellipse, rgba(186,131,255,0.15) 0%, transparent 70%)',
-                filter: 'blur(2vh)',
-                zIndex: 0,
-                pointerEvents: 'none'
-              }} />
+          <button onClick={() => {
+          const target = document.getElementById('studio');
+          if (target) {
+            const startPosition = window.pageYOffset;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 1500; // 1.5 seconds
+            let start = null;
+
+            function step(timestamp) {
+              if (!start) start = timestamp;
+              const progress = timestamp - start;
+              const percentage = Math.min(progress / duration, 1);
               
-              {/* Lead-in text */}
-              <p className={`${michroma.className} sm:text-[1.2vw] md:text-[1vw] lg:text-[0.8vw] xl:text-[0.7vw]`} style={{
-                margin: 0,
-                color: '#fff',
-                fontWeight: 600,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                position: 'relative',
-                zIndex: 1
-              }}>
-                WE DESIGN
-              </p>
+              // Easing function (easeInOutQuad)
+              const easeInOutQuad = t => t<.5 ? 2*t*t : -1+(4-2*t)*t;
               
-              {/* Main headline with gradient */}
-              <h2 className="sm:text-[2.8vw] md:text-[2.4vw] lg:text-[1.8vw] xl:text-[1.5vw] font-black leading-[1.1]" style={{
-                margin: 0,
-                position: 'relative',
-                zIndex: 1
-              }}>
-                <span className="bg-gradient-to-r from-white via-fuchsia-300 to-violet-300 bg-clip-text text-transparent">
-                 DIGITAL EXPERIENCES
-                </span>
-              </h2>
+              window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
               
-              {/* Supporting text */}
-              <p className={`${michroma.className} sm:text-[1.2vw] md:text-[1vw] lg:text-[0.8vw] xl:text-[0.7vw]`} style={{
-                margin: 0,
-                color: 'rgba(255,255,255,0.85)',
-                fontWeight: 400,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                position: 'relative',
-                zIndex: 1
-              }}>
-                THAT ELEVATE BRANDS.
-              </p>
-              
-              {/* Gradient underline accent */}
-              <div style={{
-                width: '60%',
-                height: '0.3vh',
-                background: 'linear-gradient(90deg, rgba(255,78,205,0.6) 0%, rgba(185,131,255,0.4) 50%, transparent 100%)',
-                marginTop: '1vh',
-                position: 'relative',
-                zIndex: 1
-              }} />
-            </div>
-          </div>
+              if (progress < duration) {
+                window.requestAnimationFrame(step);
+              }
+            }
+            
+            window.requestAnimationFrame(step);
+          }
+        }} className="rounded-full inline-flex items-center sm:w-[44vw] md:w-[34vw] lg:w-[24vw] xl:w-[20vw] sm:px-[4vw] md:px-[3vw] lg:px-[2.4vw] xl:px-[2vw] sm:py-[1.6vh] md:py-[1.4vh] lg:py-[1.2vh] xl:py-[1.1vh] sm:text-[2.6vw] md:text-[1.9vw] lg:text-[1.1vw] xl:text-[1vw] gap-[1.2vw]" style={{
+          borderRadius: '50vh',
+          fontWeight: 700,
+          background: '#fff',
+          color: '#181818',
+          border: 'none',
+          boxShadow: '0 0.5vh 4vh 0 rgba(0,0,0,0.06)',
+          cursor: 'pointer',
+        }}>
+          LETS GET STARTED
+          <span className="shrink-0 sm:ml-[1.5vw] sm:w-[3vh] sm:h-[3vh] md:ml-[1.2vw] md:w-[2.8vh] md:h-[2.8vh] lg:ml-[1vw] lg:w-[2.5vh] lg:h-[2.5vh] xl:ml-[0.8vw] xl:w-[2.2vh] xl:h-[2.2vh]" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg,#ff4ecd 0%,#b983ff 100%)',
+            boxShadow: '0 0.5vh 2vh 0 rgba(186,131,255,0.10)',
+          }}>
+            <FaArrowUpRightFromSquare className="sm:w-[1.8vw] sm:h-[1.8vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.2vw] lg:h-[1.2vw] xl:w-[1vw] xl:h-[1vw]" style={{ color: '#fff' }} />
+          </span>
+        </button>
         </div>
 
         {/* Right column: tagline above, smaller box below */}
         <div className="sm:mr-[2vw] md:mr-[3vw] lg:mr-[4vw] xl:mr-[4.5vw]" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-          {/* Auto-rotating single-card vertical carousel */}
-          <div className="relative sm:w-[30vw] md:w-[28vw] lg:w-[24vw] xl:w-[15vw] mt-[1.8vh] overflow-hidden" style={{ aspectRatio: '0.2 / 0.2' }}>
-            <div className="relative w-full h-full">
-              {/* Slide 1 */}
-              <div className={`absolute inset-0 transition-opacity duration-700 ${activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div
-                  className="w-full h-full"
-                  style={{
-                    boxSizing: 'border-box',
-                    borderRadius: '1.6vh',
-                    background: 'rgba(255,255,255,0.08)',
-                    backdropFilter: 'blur(1.8vh)',
-                    WebkitBackdropFilter: 'blur(1.8vh)',
-                    border: '0.2vh solid rgba(255, 255, 255, 0.18)',
-                    boxShadow: '0 0.6vh 3vh 0 rgba(186,131,255,0.18)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <Image src="/images/floating_1.jpg" alt="Slide 1" fill sizes="(max-width: 768px) 30vw, 22vw" style={{ objectFit: 'cover' }} />
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20" />
-                </div>
-              </div>
-
-              {/* Slide 2 */}
-              <div className={`absolute inset-0 transition-opacity duration-700 ${activeIndex === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div
-                  className="w-full h-full"
-                  style={{
-                    boxSizing: 'border-box',
-                    borderRadius: '1.6vh',
-                    background: 'rgba(255,255,255,0.06)',
-                    backdropFilter: 'blur(1.6vh)',
-                    WebkitBackdropFilter: 'blur(1.6vh)',
-                    border: '0.2vh solid rgba(255, 255, 255, 0.16)',
-                    boxShadow: '0 0.5vh 2.8vh 0 rgba(186,131,255,0.14)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <Image src="/images/floating_2.jpg" alt="Slide 2" fill sizes="(max-width: 768px) 30vw, 22vw" style={{ objectFit: 'cover' }} />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
-                </div>
-              </div>
-
-              {/* Slide 3 (with PNG) */}
-              <div className={`absolute inset-0 transition-opacity duration-700 ${activeIndex === 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div
-                  className="w-full h-full"
-                  style={{
-                    boxSizing: 'border-box',
-                    borderRadius: '1.6vh',
-                    background: 'rgba(255,255,255,0.06)',
-                    backdropFilter: 'blur(1.6vh)',
-                    WebkitBackdropFilter: 'blur(1.6vh)',
-                    border: '0.2vh solid rgba(255, 255, 255, 0.16)',
-                    boxShadow: '0 0.5vh 2.8vh 0 rgba(186,131,255,0.14)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <Image src="/images/floating_3.jpg" alt="Slide 3" fill sizes="(max-width: 768px) 30vw, 22vw" style={{ objectFit: 'cover' }} />
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-red-500/20" />
-                </div>
+          <p className="sm:text-[2vw] sm:max-w-[36vw] sm:mb-[3vh] md:text-[1.7vw] md:max-w-[32vw] md:mb-[3.5vh] lg:text-[1.3vw] lg:max-w-[26vw] lg:mb-[4vh] xl:text-[1.1vw] xl:max-w-[22vw] xl:mb-[4.5vh]" style={{ margin: 0, color: '#fff', textAlign: 'right' }}>
+            <span style={{ fontWeight: 800 }}>We design</span>
+            <span className={`${michroma.className}`} style={{ fontWeight: 200, fontSize: '0.85em' }}> standout digital experiences that elevate brands.</span>
+          </p>
+          {/* Right box: relative wrapper + separate glass layer + overlay image */}
+          <div className="relative aspect-square sm:w-[16vw] md:w-[14vw] lg:w-[11.5vw] xl:w-[10vw] mt-[10vh] overflow-visible">
+            {/* Glass background layer */}
+            <div className="absolute inset-0 z-[1]" style={{
+              boxSizing: 'border-box',
+              borderRadius: '1.2vh',
+              background: 'rgba(255,255,255,0.06)',
+              backdropFilter: 'blur(2vh)',
+              WebkitBackdropFilter: 'blur(2vh)',
+              border: '0.2vh solid rgba(255, 255, 255, 0.20)',
+              boxShadow: '0 0.5vh 3vh 0 rgba(186,131,255,0.10)',
+              padding: '0.6vh 0.6vw',
+            }} />
+            {/* Image overlay layer */}
+            <div className="absolute inset-0 z-[2] pointer-events-none overflow-visible">
+              <div className="relative w-full h-full">
+                <Image
+                  src="/redcamera.png"
+                  alt="Red Camera"
+                  fill
+                  style={{ objectFit: 'contain', transform: 'translateX(30%) translateY(-45%) scale(1.45)', transformOrigin: 'top right' }}
+                />
               </div>
             </div>
-            {/* Arrows overlay */}
-            <button type="button" aria-label="Previous" onClick={handlePrev} className="absolute inset-y-0 left-0 z-10 flex items-center justify-start pl-[0.8vw] w-[18%] group">
-              <FaChevronLeft className={`transition-all duration-200 sm:w-[2.2vw] sm:h-[2.2vw] md:w-[2vw] md:h-[2vw] lg:w-[1.4vw] lg:h-[1.4vw] xl:w-[1.1vw] xl:h-[1.1vw] ${glowLeft ? 'text-white drop-shadow-[0_0_0.7rem_rgba(255,255,255,0.6)] scale-110' : 'text-white/40 group-hover:text-white/70'}`} />
-            </button>
-            <button type="button" aria-label="Next" onClick={handleNext} className="absolute inset-y-0 right-0 z-10 flex items-center justify-end pr-[0.8vw] w-[18%] group">
-              <FaChevronRight className={`transition-all duration-200 sm:w-[2.2vw] sm:h-[2.2vw] md:w-[2vw] md:h-[2vw] lg:w-[1.4vw] lg:h-[1.4vw] xl:w-[1.1vw] xl:h-[1.1vw] ${glowRight ? 'text-white drop-shadow-[0_0_0.7rem_rgba(255,255,255,0.6)] scale-110' : 'text-white/40 group-hover:text-white/70'}`} />
-            </button>
-
-            {/* Active dots */}
-            <div className="flex justify-center gap-[0.6vw] mt-[2vh]">
-              {[0,1,2].map((i) => (
-                <div key={i} className={`w-[0.9vw] h-[0.9vw] rounded-full transition-all duration-300 ${activeIndex === i ? 'bg-white/80 scale-100' : 'bg-white/25 scale-75'}`}></div>
-              ))}
-            </div>
-          </div>
-          {/* CTA below carousel */}
-          <div className="sm:w-[30vw] md:w-[28vw] lg:w-[24vw] xl:w-[15vw] sm:mt-[3.2vh] md:mt-[3.8vh] lg:mt-[4.2vh] xl:mt-[4.8vh] flex justify-center">
-            <button
-              type="button"
-              onClick={() => {
-                const target = document.getElementById('studio');
-                if (target) {
-                  const startPosition = window.pageYOffset;
-                  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                  const distance = targetPosition - startPosition;
-                  const duration = 1500; // 1.5 seconds
-                  let start = null;
-
-                  function step(timestamp) {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-                    const percentage = Math.min(progress / duration, 1);
-                    // Easing function (easeInOutQuad)
-                    const easeInOutQuad = t => t<.5 ? 2*t*t : -1+(4-2*t)*t;
-                    window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
-                    if (progress < duration) {
-                      window.requestAnimationFrame(step);
-                    }
-                  }
-                  
-                  window.requestAnimationFrame(step);
-                }
-              }}
-              className="inline-flex items-center justify-center rounded-full px-[1.6vw] py-[1.2vh] sm:text-[1vw] md:text-[0.95vw] lg:text-[0.85vw] xl:text-[0.8vw] font-semibold uppercase tracking-[0.12em] text-[#0a0a0a] bg-gradient-to-r from-white to-fuchsia-200 hover:from-fuchsia-300 hover:to-violet-300 transition-colors duration-300 shadow-[0_0.6vh_2vh_rgba(186,131,255,0.25)] focus:outline-none focus:ring-2 focus:ring-fuchsia-400/60"
-              aria-label="Lets get started"
-            >
-              LETS GET STARTED
-            </button>
           </div>
         </div>
 
