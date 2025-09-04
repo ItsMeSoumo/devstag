@@ -242,7 +242,7 @@ export default function Services() {
                   title: 'Web Engineering', 
                   desc: 'High-performance web apps with Next.js and modern stacks.', 
                   gradient: 'from-purple-500 to-fuchsia-500',
-                  image: '/hero-img.jpg',
+                  image: '/images/floating_1.jpg',
                   alt: 'High-performance web app interface preview',
                   tags: ['Next.js', 'Edge', 'SSR']
                 },
@@ -250,7 +250,7 @@ export default function Services() {
                   title: 'Brand & UI', 
                   desc: 'Minimal interfaces with premium typography and motion.', 
                   gradient: 'from-indigo-500 to-purple-500',
-                  image: '/hands.png',
+                  image: '/images/floating_2.jpg',
                   alt: 'Design collaboration and UI sketching',
                   tags: ['Design System', 'Typography', 'Motion']
                 },
@@ -258,7 +258,7 @@ export default function Services() {
                   title: '3D & Immersive', 
                   desc: 'Real‑time 3D and XR for storytelling and interaction.', 
                   gradient: 'from-violet-500 to-fuchsia-500',
-                  image: '/devstag-hero-orb.png',
+                  image: '/images/floating_3.jpg',
                   alt: 'Immersive 3D orb visualization',
                   tags: ['Three.js', 'WebGL', 'XR']
                 },
@@ -266,7 +266,7 @@ export default function Services() {
                   title: 'AI Automation', 
                   desc: 'Intelligent workflows and data-driven decision systems.', 
                   gradient: 'from-blue-500 to-purple-600',
-                  image: '/globe.svg',
+                  image: '/images/floating_4.jpg',
                   alt: 'Global AI and automation network',
                   tags: ['LLMs', 'Agents', 'Automation']
                 },
