@@ -196,6 +196,7 @@ const PortalScrollDemo = () => {
         /* Add a little extra space before the final box */
         .vr-section:last-of-type {
           margin-top: 40vh;
+          margin-bottom: -3vh;
         }
 
         .vr-frame {
