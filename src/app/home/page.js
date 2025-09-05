@@ -191,7 +191,7 @@ export default function Home() {
           >
 
             <div className="relative w-[100vw]" >
-              {/* <PortalScrollDemo /> */}
+              <PortalScrollDemo />
               {/* <span className="absolute top-4 left-4 px-3 py-1 text-xs font-semibold text-yellow-300 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">
                 PREMIUM PROJECT 2
               </span> */}
