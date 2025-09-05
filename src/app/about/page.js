@@ -178,7 +178,7 @@ export default function AboutPage() {
               className="text-display-xl gradient-primary mb-6 font-inter"
               id="about-hero-heading"
             >
-              Modern. Minimal. Premium.
+              Immersive. Innovative. Impactful.
             </motion.h1>
             
             <motion.p 
@@ -187,10 +187,21 @@ export default function AboutPage() {
               transition={{ duration: shouldReduceMotion ? 0.01 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
               className="text-body-lg text-white/80 mb-0 max-w-3xl mx-auto font-inter"
             >
-              We craft timeless digital experiences with a focus on clarity, purpose, and elegance. 
-              Lavender and purple gradients guide a restrained aesthetic—where every detail matters.
+              At Studio Devstag, simplicity becomes sophistication. We craft digital experiences that balance innovation with elegance, guided by a modern aesthetic where every interaction feels intentional and every detail matters.
             </motion.p>
           </div>
+        </div>
+      </section>
+
+      {/* Let’s Create Together CTA */}
+      <section className="section-spacing" aria-labelledby="cta-heading">
+        <div className="container-max">
+          <PremiumCard className="p-10 text-center hover:-translate-y-1" delay={0.1}>
+            <h2 className="text-display-lg gradient-primary font-inter mb-4" id="cta-heading">Let’s Create Together</h2>
+            <p className="text-body-lg text-white/80 font-inter max-w-3xl mx-auto">
+              Curious about what we can build for you? Let’s connect.
+            </p>
+          </PremiumCard>
         </div>
       </section>
 
@@ -213,9 +224,7 @@ export default function AboutPage() {
                   <h2 className="text-display-lg gradient-accent font-inter" id="about-content-heading">Who We Are</h2>
                 </div>
                 <p className="text-body text-white/80 leading-relaxed max-w-2xl font-inter">
-                  We blend design, engineering, and narrative to craft products that feel effortless.
-                  Simplicity, accessibility, and longevity guide our work—so every experience remains
-                  beautiful and usable from mobile to 4K.
+                  Where design merges with engineering to shape digital experiences that are intuitive, accessible, and built to last.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {['Clarity', 'Accessibility', 'Performance'].map((tag) => (
@@ -229,9 +238,9 @@ export default function AboutPage() {
               {/* Principles - compact rows */}
               <ul className="space-y-4" aria-label="Studio principles">
                 {[ 
-                  { title: 'Craft meets code', desc: 'Design and engineering working as one.' , gradient: 'from-purple-500 to-fuchsia-500'},
-                  { title: 'Accessible by default', desc: 'Inclusive, WCAG-compliant experiences.' , gradient: 'from-indigo-500 to-purple-500'},
-                  { title: 'Performance obsessed', desc: 'Fast, smooth, and responsive on every device.' , gradient: 'from-violet-500 to-fuchsia-500'},
+                  { title: 'Craft meets code', desc: 'Seamless design‑engineering synergy for intuitive products.' , gradient: 'from-purple-500 to-fuchsia-500'},
+                  { title: 'Accessible by default', desc: 'Inclusivity embedded from the ground up.' , gradient: 'from-indigo-500 to-purple-500'},
+                  { title: 'Performance obsessed', desc: 'Lightning‑fast, smooth experiences across every device.' , gradient: 'from-violet-500 to-fuchsia-500'},
                 ].map((p) => (
                   <li key={p.title} className="group relative rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
                     <div className="flex gap-3 p-5">
@@ -308,10 +317,13 @@ export default function AboutPage() {
             <PremiumCard className="p-10" delay={0.1}>
               <ol className="relative pl-6 md:pl-8 space-y-8" aria-label="Timeline of milestones">
               {[ 
-                { year: '2019', title: 'Founded the Studio', desc: 'Started with a vision to build premium, minimal digital experiences.' },
-                { year: '2021', title: 'Scaled Craft & Capability', desc: 'Expanded design and engineering teams to serve larger, complex projects.' },
-                { year: '2023', title: 'Immersive & 3D', desc: 'Integrated XR and real‑time 3D to elevate storytelling and interaction.' },
-                { year: '2025', title: 'Accessible by Default', desc: 'Shipped an accessibility-first design system that scales beautifully.' }
+                { year: '2019', title: 'Born from a desire to create minimal, impactful digital experiences.' },
+                { year: '2020', title: 'Architectural Visualization in VR: Expanded into immersive design for real estate and spaces.' },
+                { year: '2021', title: 'Expanded our team, enabling us to take on more ambitious projects.' },
+                { year: '2022', title: 'Ventured into animated storytelling with cutting-edge 3D workflows.' },
+                { year: '2023', title: 'We embraced XR and real-time 3D to elevate storytelling.' },
+                { year: '2024', title: 'Entered the cinematic space, delivering high-quality visual effects for film.' },
+                { year: '2025', title: 'Accessibility-First Design System: Making inclusivity our foundation, not an afterthought.' }
               ].map((item) => (
                 <li key={item.year} className="relative">
                   <span className="absolute -left-3 top-2 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500" aria-hidden="true" />
@@ -319,7 +331,9 @@ export default function AboutPage() {
                     <span className="text-sm text-white/60 font-medium font-inter">{item.year}</span>
                     <h3 className="text-lg text-white/95 font-medium font-inter">{item.title}</h3>
                   </div>
-                  <p className="text-body text-white/70 mt-2 font-inter">{item.desc}</p>
+                  {item.desc ? (
+                    <p className="text-body text-white/70 mt-2 font-inter">{item.desc}</p>
+                  ) : null}
                 </li>
               ))}
               </ol>
@@ -338,7 +352,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="mb-12 text-center"
           >
-            <h2 className="text-display-lg gradient-primary font-inter" id="values-heading">Our Values</h2>
+            <h2 className="text-display-lg gradient-primary font-inter" id="values-heading">Values That Define Us</h2>
           </motion.div>
           <PremiumCard className="p-10 hover:-translate-y-1" delay={0.1}>
             <motion.ul
@@ -353,10 +367,10 @@ export default function AboutPage() {
               }}
             >
               {[
-                { title: 'Clarity', desc: 'Less, but better. We remove noise and surface what matters.' , gradient: 'from-purple-500 to-fuchsia-500'},
-                { title: 'Trust', desc: 'Reliable, accessible, and secure by default.' , gradient: 'from-purple-400 to-indigo-500'},
-                { title: 'Empathy', desc: 'Human-centered decisions grounded in research and care.' , gradient: 'from-fuchsia-500 to-pink-500'},
-                { title: 'Performance', desc: 'Fast, smooth, and delightful on every device.' , gradient: 'from-violet-500 to-purple-600'},
+                { title: 'Clarity', desc: 'We strip away the unnecessary to focus on what truly matters.' , gradient: 'from-purple-500 to-fuchsia-500'},
+                { title: 'Trust', desc: 'Security, reliability, and accessibility—built‑in, always.' , gradient: 'from-purple-400 to-indigo-500'},
+                { title: 'Empathy', desc: 'Our work centers on understanding real human needs.' , gradient: 'from-fuchsia-500 to-pink-500'},
+                { title: 'Performance', desc: 'Delightfully fast, any device, any time.' , gradient: 'from-violet-500 to-purple-600'},
               ].map((v, idx) => (
                 <motion.li
                   key={v.title}
@@ -390,7 +404,7 @@ export default function AboutPage() {
           >
             <h2 className="text-display-lg gradient-primary font-inter" id="showcase-heading">Studio Showcase</h2>
             <p className="text-body text-white/70 max-w-2xl mx-auto mt-3 font-inter">
-              A professional space for photography and highlights. Replace these images with your own studio shots.
+              Innovation on display.
             </p>
           </motion.div>
 

@@ -42,29 +42,32 @@ export default function Services() {
   const workTracks = useMemo(() => [
     {
       title: 'Discovery & Strategy',
-      subtitle: 'Align, de‑risk, and plan',
+      subtitle: 'Ideation workshops, requirement mapping, technology audits, and creative roadmapping.',
       features: [
-        'Stakeholder workshop',
-        'Tech audit & roadmap',
-        'Risk & opportunity report',
+        'Ideation workshops',
+        'Requirement mapping',
+        'Technology audits',
+        'Creative roadmapping',
       ],
     },
     {
-      title: 'Build & Integrate',
-      subtitle: 'Ship quality software fast',
+      title: 'Design & Build',
+      subtitle: '3D modeling, animation, AR/VR environments, pixel streaming apps, and VFX production.',
       features: [
-        'Design system & components',
-        'API & service orchestration',
-        'End‑to‑end testing',
+        '3D modeling & animation',
+        'AR/VR environments',
+        'Pixel streaming apps',
+        'VFX production',
       ],
     },
     {
       title: 'Scale & Optimize',
-      subtitle: 'Grow with confidence',
+      subtitle: 'Performance tuning, feature expansion, multi‑platform deployment, and continuous support.',
       features: [
-        'Performance & CWV tuning',
-        'A11y & QA automation',
-        'Observability & SLOs',
+        'Performance tuning',
+        'Feature expansion',
+        'Multi‑platform deployment',
+        'Continuous support',
       ],
     },
   ], []);
@@ -213,18 +216,28 @@ export default function Services() {
             >
               Build with clarity.
             </motion.h1>
+            {!shouldReduceMotion && (
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.25 }}
+                className="text-display-lg gradient-accent mb-4"
+              >
+                Collaborate with confidence.
+              </motion.h2>
+            )}
             <motion.p
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: shouldReduceMotion ? 0.01 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
               className="text-body-lg text-white/80 mb-0 max-w-3xl mx-auto"
             >
-              Premium services across design, engineering, and immersive tech—crafted to be fast, accessible, and elegant.
+              Bringing precision, beauty, and innovation to engineering, design, and immersive technology—delivered with performance, inclusivity, and integrity.
             </motion.p>
           </div>
         </section>
 
-        {/* What We Do */}
+        {/* Our Services */}
         <section className="section-spacing" aria-labelledby="capabilities-heading">
           <div className="container-max">
             <motion.div
@@ -234,41 +247,60 @@ export default function Services() {
               transition={{ duration: 0.6 }}
               className="mb-10 text-center"
             >
-              <h2 className="text-display-lg gradient-primary" id="capabilities-heading">What We Do</h2>
+              <h2 className="text-display-lg gradient-primary" id="capabilities-heading">Our Services</h2>
+              <p className="text-body text-white/70 max-w-3xl mx-auto mt-3">
+                Innovative, immersive, and impactful: We craft digital experiences that connect, inspire, and perform.
+              </p>
             </motion.div>
             <div className="grid-2x2">
               {[
-                { 
-                  title: 'Web Engineering', 
-                  desc: 'High-performance web apps with Next.js and modern stacks.', 
+                {
+                  title: 'Pixel Streaming Applications',
+                  desc: 'High-end 3D experiences, streamed instantly to any device.',
                   gradient: 'from-purple-500 to-fuchsia-500',
                   image: '/images/floating_1.jpg',
-                  alt: 'High-performance web app interface preview',
-                  tags: ['Next.js', 'Edge', 'SSR']
+                  alt: 'Pixel streaming 3D experience',
+                  tags: ['Pixel Streaming', 'Low Latency', 'Cloud']
                 },
-                { 
-                  title: 'Brand & UI', 
-                  desc: 'Minimal interfaces with premium typography and motion.', 
+                {
+                  title: 'Augmented Reality',
+                  desc: 'Bring products and stories to life in the real world.',
                   gradient: 'from-indigo-500 to-purple-500',
                   image: '/images/floating_2.jpg',
-                  alt: 'Design collaboration and UI sketching',
-                  tags: ['Design System', 'Typography', 'Motion']
+                  alt: 'Augmented Reality showcase',
+                  tags: ['AR', 'WebAR', 'Mobile']
                 },
-                { 
-                  title: '3D & Immersive', 
-                  desc: 'Real‑time 3D and XR for storytelling and interaction.', 
+                {
+                  title: 'Virtual Reality',
+                  desc: 'Immersive training, simulations, and architectural experiences that inspire, engage, and transform industries.',
                   gradient: 'from-violet-500 to-fuchsia-500',
                   image: '/images/floating_3.jpg',
-                  alt: 'Immersive 3D orb visualization',
-                  tags: ['Three.js', 'WebGL', 'XR']
+                  alt: 'Virtual Reality experience',
+                  tags: ['VR', 'Simulations', 'Training']
                 },
-                { 
-                  title: 'AI Automation', 
-                  desc: 'Intelligent workflows and data-driven decision systems.', 
+                {
+                  title: 'Architectural Visualization (ArchViz)',
+                  desc: 'Turn blueprints into photoreal, interactive 3D experiences.',
                   gradient: 'from-blue-500 to-purple-600',
                   image: '/images/floating_4.jpg',
-                  alt: 'Global AI and automation network',
-                  tags: ['LLMs', 'Agents', 'Automation']
+                  alt: 'Architectural Visualization',
+                  tags: ['ArchViz', 'Photoreal', 'Interactive']
+                },
+                {
+                  title: 'Animation',
+                  desc: 'Dynamic visuals that move audiences and simplify storytelling.',
+                  gradient: 'from-pink-500 to-purple-500',
+                  image: '/images/floating_2.jpg',
+                  alt: 'Animation production',
+                  tags: ['Animation', 'Motion', '3D']
+                },
+                {
+                  title: 'Visual Effects (VFX)',
+                  desc: 'Cinematic-quality effects that elevate film and media projects.',
+                  gradient: 'from-cyan-500 to-indigo-500',
+                  image: '/images/floating_1.jpg',
+                  alt: 'Visual effects production',
+                  tags: ['VFX', 'Film', 'Cinematic']
                 },
               ].map((s, idx) => (
                 <ModernCard key={s.title} className="group p-0 hover:-translate-y-1" delay={0.05 * idx}>
@@ -311,8 +343,8 @@ export default function Services() {
                 <div className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></div>
                 BENEFITS
               </div>
-              <h2 className="text-display-lg gradient-primary" id="benefits-heading">Why teams choose Devstag</h2>
-              <p className="text-white/70 max-w-3xl mx-auto text-body">A delivery‑first approach with obsessive attention to performance, accessibility, and long‑term maintainability.</p>
+              <h2 className="text-display-lg gradient-primary" id="benefits-heading">Why Choose Studio Devstag?</h2>
+              <p className="text-white/70 max-w-3xl mx-auto text-body">Immersive by design, performance obsessed, and cinematic storytelling at the core.</p>
             </div>
   
             <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -331,40 +363,28 @@ export default function Services() {
                           <div>
                             <div className="flex items-start gap-3 mb-3">
                               <span className="mt-1 inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500" aria-hidden="true" />
-                              <h3 className="text-2xl font-medium">Performance & Experience</h3>
+                              <h3 className="text-2xl font-medium">Immersive by Design</h3>
                             </div>
                             <ul className="space-y-3 text-white/75">
                               <li className="flex items-start gap-3">
                                 <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>CLS &lt; 0.05, LCP &lt; 2.5s on modern devices</span>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>Fluid, accessible interactions powered by Framer Motion</span>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>Typography system using clamp() for perfect scaling</span>
+                                <span>From AR to VR, we craft experiences that inspire and transform industries.</span>
                               </li>
                             </ul>
                           </div>
                           <div>
                             <div className="flex items-start gap-3 mb-3">
                               <span className="mt-1 inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500" aria-hidden="true" />
-                              <h3 className="text-2xl font-medium">Reliability & Security</h3>
+                              <h3 className="text-2xl font-medium">Performance Obsessed</h3>
                             </div>
                             <ul className="space-y-3 text-white/75">
                               <li className="flex items-start gap-3">
                                 <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>Type‑safe patterns and strict linting for predictable code</span>
+                                <span>Seamless, real-time 3D applications built for scale and accessibility.</span>
                               </li>
                               <li className="flex items-start gap-3">
                                 <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>WCAG‑compliant contrast, focus states, and keyboard navigation</span>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>Hardened, tested components with a stable API surface</span>
+                                <span>Cinematic Storytelling: Animation and VFX that elevate ideas with impact, emotion, and polish.</span>
                               </li>
                             </ul>
                           </div>
@@ -415,11 +435,11 @@ export default function Services() {
                   'rgba(236, 72, 153, 0.35)',
                 ];
                 return [
-                  { title: 'Faster Delivery', desc: 'Streamlined pipelines and component libraries accelerate shipping without sacrificing quality.', color: 'from-purple-500 to-fuchsia-500' },
-                  { title: 'Quality Assured', desc: 'Type-safe code, accessibility-first design, and rigorous reviews against best practices.', color: 'from-blue-500 to-purple-500' },
-                  { title: 'Performance', desc: 'Optimized for Core Web Vitals and smooth, 120fps interactions.', color: 'from-indigo-500 to-cyan-500' },
-                  { title: 'Scalability', desc: 'Modular architecture enabling growth without rewrites.', color: 'from-violet-500 to-purple-500' },
-                  { title: 'Support', desc: 'Clear docs, handoffs, and ongoing support plans.', color: 'from-fuchsia-500 to-pink-500' },
+                  { title: 'Immersive Innovation', desc: 'From AR to VR, we deliver next‑gen experiences tailored for business, entertainment, and education.', color: 'from-purple-500 to-fuchsia-500' },
+                  { title: 'Pixel‑Perfect Performance', desc: 'Real‑time, high‑fidelity 3D applications optimized for speed, scale, and seamless user experience.', color: 'from-blue-500 to-purple-500' },
+                  { title: 'Cinematic Storytelling', desc: 'Animation and VFX that add impact, emotion, and polish to your brand and projects.', color: 'from-indigo-500 to-cyan-500' },
+                  { title: 'Industry‑Focused Solutions', desc: 'Specialized in industrial training, simulations, and architectural visualization that solve real‑world challenges.', color: 'from-violet-500 to-purple-500' },
+                  { title: 'Scalable & Accessible', desc: 'Built to grow with your vision, while ensuring inclusivity and accessibility at the core.', color: 'from-fuchsia-500 to-pink-500' },
                 ].map((b, i) => (
                   <AnimatedCard
                     key={b.title}
@@ -451,7 +471,7 @@ export default function Services() {
                 HOW WE WORK
               </div>
               <h2 className="text-display-lg gradient-primary mb-8" id="process-heading">
-                Engagement Tracks
+                Work With Us Your Way
               </h2>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
                 Choose the approach that fits your goals—from rapid discovery to scalable delivery.
@@ -507,7 +527,7 @@ export default function Services() {
                 Cutting-Edge Technologies
               </h2>
               <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-                Explore the advanced technologies that power our solutions
+                Innovation powered by real-time engines, web-native interactivity, and creative freedom crafted for true immersion.
               </p>
             </div>
             
@@ -516,8 +536,8 @@ export default function Services() {
                 const AnimatedCard = require('@/components/AnimatedCard').default;
                 return [
                   {
-                    title: "AI-Powered Analytics",
-                    description: "Leverage cutting-edge artificial intelligence to gain deep insights from your data and make informed decisions.",
+                    title: "Real-Time 3D Engines",
+                    description: "Photoreal environments, lifelike physics, and interactive worlds built with next-gen rendering power.",
                     icon: (
                       <svg className="w-12 h-12 text-purple-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -526,8 +546,8 @@ export default function Services() {
                     glowColor: "rgba(168, 85, 247, 0.4)"
                   },
                   {
-                    title: "Blockchain Integration",
-                    description: "Secure, transparent, and immutable data storage with our advanced blockchain technology integration.",
+                    title: "Web & XR Technologies",
+                    description: "Browser-ready, device-agnostic, and future-proof — immersive apps that work anywhere, instantly.",
                     icon: (
                       <svg className="w-12 h-12 text-blue-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -536,8 +556,8 @@ export default function Services() {
                     glowColor: "rgba(59, 130, 246, 0.4)"
                   },
                   {
-                    title: "Immersive Experiences",
-                    description: "Create stunning, interactive user experiences with our advanced UI/UX technologies and frameworks.",
+                    title: "Creative & Production Tools",
+                    description: "From concept to final frame, our open-source pipeline ensures flexibility, speed, and stunning results.",
                     icon: (
                       <svg className="w-12 h-12 text-indigo-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -601,18 +621,18 @@ export default function Services() {
                   </div>
 
                   <h2 className="text-display-lg gradient-primary mb-4" id="cta-heading">
-                    Ready to elevate your experience?
+                    Ready to create experiences that inspire, engage, and transform?
                   </h2>
                   <p id="cta-desc" className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-                    Get started with our premium services today and join thousands of successful traders worldwide.
+                    From cinematic VFX to industrial VR training, from interactive ArchViz to pixel‑streamed worlds, let’s bring your vision to life.
                   </p>
 
                   {/* Quick benefits */}
                   <ul className="mx-auto mt-6 mb-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3">
                     {[
-                      '1:1 strategy call',
-                      'Roadmap in 48 hours',
-                      'Enterprise-grade quality',
+                      'Strategy call within 24 hours',
+                      'Tailored roadmap in 48 hours',
+                      'Scalable, enterprise-grade delivery',
                     ].map((point) => (
                       <li key={point} className="flex items-center gap-2 text-white/80">
                         <svg className="h-4 w-4 text-emerald-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
