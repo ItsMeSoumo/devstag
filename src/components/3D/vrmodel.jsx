@@ -158,7 +158,7 @@ const PortalScrollDemo = () => {
           top: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 11;
+          z-index: 20;
           pointer-events: none;
           object-fit: cover;
           width: 100vw;
@@ -201,7 +201,6 @@ const PortalScrollDemo = () => {
           width: 100%;
           max-width: var(--vr-frame-max-w);
           aspect-ratio: 16 / 9;
-          z-index: 2;
         }
 
         .vr-frame--right { margin-right: var(--vr-gap-x); }
