@@ -5,7 +5,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Canvas } from "@react-three/fiber";
 import Scene from "@/components/3D/Scene";
-import Lenis from "@studio-freight/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,26 +14,6 @@ const PortalScrollDemo = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Local Lenis just for this VR section/page
-    const lenis = new Lenis({
-      duration: 4,
-      smoothWheel: true,
-      smoothTouch: true,
-      wheelMultiplier: 0.4,
-      touchMultiplier: 0.6,
-    });
-
-    // Keep ScrollTrigger in sync with Lenis
-    lenis.on('scroll', ScrollTrigger.update);
-
-    // Drive Lenis via requestAnimationFrame
-    let rafId;
-    const raf = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
-
     const getResponsiveValues = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -85,7 +64,7 @@ const PortalScrollDemo = () => {
           x1: '0vw', y1: '15vh',
           x2: '-35vw', y2: '55vh',
           x3: '35vw', y3: '160vh',
-          x4: '0vw', y4: '250vh',
+          x4: '0vw', y4: '200vh',
           endMult: 0.8,
         };
       }
@@ -101,7 +80,7 @@ const PortalScrollDemo = () => {
             const endPx = Math.round(window.innerHeight * values.endMult);
             return `bottom+=${endPx} top`;
           },
-          scrub: 2,
+          scrub: 1,
           onUpdate: (self) => setProgress(self.progress),
         },
       });
@@ -109,8 +88,7 @@ const PortalScrollDemo = () => {
         .to(modelRef.current, { x: values.x1, y: values.y1, ease: "none" })
         .to(modelRef.current, { x: values.x2, y: values.y2, ease: "none" })
         .to(modelRef.current, { x: values.x3, y: values.y3, duration: 2.5, ease: "none" })
-        // Make the last leg very slow across all screen sizes
-        .to(modelRef.current, { x: values.x4, y: values.y4, duration: 6, ease: "none" });
+        .to(modelRef.current, { x: values.x4, y: values.y4, ease: "none" });
       return tl;
     };
 
@@ -129,8 +107,6 @@ const PortalScrollDemo = () => {
       window.removeEventListener('resize', handleResize);
       if (tl?.scrollTrigger) tl.scrollTrigger.kill();
       if (tl) tl.kill();
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
     };
   }, []);
 
@@ -182,7 +158,7 @@ const PortalScrollDemo = () => {
           top: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 5;
+          z-index: 11;
           pointer-events: none;
           object-fit: cover;
           width: 100vw;
@@ -195,7 +171,6 @@ const PortalScrollDemo = () => {
           place-items: center;
           height: 100vh;
           z-index: 10;
-          background: transparent;
         }
 
         .vr-canvas {
@@ -205,11 +180,6 @@ const PortalScrollDemo = () => {
           overflow: hidden;
           background: transparent;
           position: relative;
-          z-index: 15;
-        }
-        
-        .vr-canvas canvas {
-          background: transparent !important;
         }
 
         .vr-section {
@@ -220,7 +190,6 @@ const PortalScrollDemo = () => {
         /* Add a little extra space before the final box */
         .vr-section:last-of-type {
           margin-top: 40vh;
-          margin-bottom: -3vh;
         }
 
         .vr-frame {
@@ -232,6 +201,7 @@ const PortalScrollDemo = () => {
           width: 100%;
           max-width: var(--vr-frame-max-w);
           aspect-ratio: 16 / 9;
+          z-index: 2;
         }
 
         .vr-frame--right { margin-right: var(--vr-gap-x); }
@@ -277,7 +247,7 @@ const PortalScrollDemo = () => {
           .vr-col, .vr-spacer { width: 100%; }
           .vr-spacer { display: none; }
           .vr-col--right { justify-content: center; }
-          .vr-canvas { min-height: 35vh; }
+          .vr-canvas { min-height: 300px; }
         }
 
         /* SM ≤640px */
@@ -299,7 +269,7 @@ const PortalScrollDemo = () => {
           .vr-col, .vr-spacer { width: 100%; }
           .vr-spacer { display: none; }
           .vr-col--right { justify-content: center; }
-          .vr-canvas { min-height: 42vh; }
+          .vr-canvas { min-height: 350px; }
         }
 
         /* MD ≤1024px */
@@ -320,7 +290,7 @@ const PortalScrollDemo = () => {
           .vr-col, .vr-spacer { width: 100%; }
           .vr-spacer { display: none; }
           .vr-col--right { justify-content: center; }
-          .vr-canvas { min-height: 50vh; }
+          .vr-canvas { min-height: 400px; }
         }
 
         /* LG 1025–1440px */
@@ -341,7 +311,7 @@ const PortalScrollDemo = () => {
           .vr-col, .vr-spacer { width: 50%; }
           .vr-spacer { display: block; }
           .vr-col--right { justify-content: flex-end; }
-          .vr-canvas { min-height: 58vh; }
+          .vr-canvas { min-height: 500px; }
         }
 
         /* XL ≥1441px */
@@ -362,7 +332,7 @@ const PortalScrollDemo = () => {
           .vr-col, .vr-spacer { width: 50%; }
           .vr-spacer { display: block; }
           .vr-col--right { justify-content: flex-end; }
-          .vr-canvas { min-height: 62vh; }
+          .vr-canvas { min-height: 550px; }
         }
 
         /* Landscape mobile optimization */
@@ -400,7 +370,7 @@ const PortalScrollDemo = () => {
         </div>
       </section>
 
-      <section className="vr-section vr-flex" style={{ marginTop: '7vh' }}>
+      <section className="vr-section vr-flex">
         <div className="vr-col">
           <div className="vr-frame vr-frame--left">
             {/* Video iframe content */}
