@@ -143,17 +143,17 @@ export default function Home() {
     <div style={{ maxWidth: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
 
-        {/* Intro Section */}
-        <section style={{ position: 'relative', zIndex: 2000 }}>
+        {/* Intro Section (hidden on mobile) */}
+        <section className="hidden md:block" style={{ position: 'relative', zIndex: 2000 }}>
           <Intro />
         </section>
 
         <SecondSection />
 
-        {/* 3d VR rotation section */}
+        {/* 3d VR rotation section (hidden on mobile) */}
         <section
           ref={worksRef}
-          className="relative w-full py-20 px-0 mt-[50px] rounded-t-[40px] ml-4 shadow-2xl will-change-transform overlap-section"
+          className="hidden md:block relative w-full py-20 px-0 mt-[50px] rounded-t-[40px] ml-4 shadow-2xl will-change-transform overlap-section"
           style={{
             // transform: "translateY(0) scale(1)",
             opacity: 1,
