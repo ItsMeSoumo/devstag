@@ -17,7 +17,7 @@ const PortalScrollDemo = () => {
   useEffect(() => {
     // Local Lenis just for this VR section/page
     const lenis = new Lenis({
-      duration: 4.2,
+      duration: 4,
       smoothWheel: true,
       smoothTouch: true,
       wheelMultiplier: 0.4,
@@ -109,7 +109,8 @@ const PortalScrollDemo = () => {
         .to(modelRef.current, { x: values.x1, y: values.y1, ease: "none" })
         .to(modelRef.current, { x: values.x2, y: values.y2, ease: "none" })
         .to(modelRef.current, { x: values.x3, y: values.y3, duration: 2.5, ease: "none" })
-        .to(modelRef.current, { x: values.x4, y: values.y4, ease: "none" });
+        // Make the last leg very slow across all screen sizes
+        .to(modelRef.current, { x: values.x4, y: values.y4, duration: 6, ease: "none" });
       return tl;
     };
 
