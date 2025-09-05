@@ -1,11 +1,13 @@
-"use client";
+"use client"
 
 import { motion } from "framer-motion";
+import { useRef, useEffect, useCallback, useMemo, useState } from "react";
 import MagicBento from "@/components/ui/Magicbento";
 import DarkVeil from "@/components/ui/Darkveil";
-import { useRef, useEffect, useCallback, useMemo, useState } from "react";
 import useLenis from "@/hooks/useLenis";
 import Footer from "@/components/Footer";
+import { StickyScroll } from "@/components/ui/stcikyreveal";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import Intro from "@/components/Intro";
 import FloatingGallery from "@/components/FloatingGallery";
 import Capsules from "@/components/capsules";
@@ -22,10 +24,6 @@ export default function Home() {
   // Initialize Lenis for smooth scrolling
   const lenis = useLenis({
     autoRaf: true,
-    duration: 1.4,          // increase for slower interpolation (default ~1)
-    smoothWheel: true,
-    wheelMultiplier: 0.7,   // lower = less scroll per wheel tick
-    touchMultiplier: 0.9,   // lower = less scroll on touch
   });
 
   const worksRef = useRef(null);
@@ -149,7 +147,7 @@ export default function Home() {
         <section style={{ position: 'relative', zIndex: 2000 }}>
           <Intro />
         </section>
-        {/* Introducing Studio Devstag Section */}
+
         <SecondSection />
 
         {/* 3d VR rotation section */}
@@ -184,7 +182,7 @@ export default function Home() {
             background: 'radial-gradient(ellipse 60% 90% at 50% 0%,rgb(0, 0, 0) 0%, #000 100%)'
           }} />
 
-         
+          {/* Additional solid background layer */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -193,8 +191,10 @@ export default function Home() {
           >
 
             <div className="relative w-[100vw]" >
-              <PortalScrollDemo />
-              
+              {/* <PortalScrollDemo /> */}
+              {/* <span className="absolute top-4 left-4 px-3 py-1 text-xs font-semibold text-yellow-300 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">
+                PREMIUM PROJECT 2
+              </span> */}
             </div>
 
           </motion.div>
@@ -205,52 +205,55 @@ export default function Home() {
           <Capsules />
         </section>
 
-        {/* Magic Bento Box Section */}
-        {/* <section
-          className="relative w-full overflow-hidden"
-          style={{
-            background: 'transparent',
-            zIndex: 21,
-            position: 'relative',
-            paddingTop: 'clamp(48px, 6vh, 96px)',
-            paddingBottom: 'clamp(48px, 6vh, 96px)',
-            width: '100%',
-            minHeight: '100vh',
-            isolation: 'isolate'
-          }}
-        >
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
-            <DarkVeil 
-              resolutionScale={1} 
-              noiseIntensity={0.02} 
-              scanlineIntensity={0.06} 
-              scanlineFrequency={6} 
-              warpAmount={0.03} 
-            />
-          </div>
-          <div className="w-full mx-auto px-4 relative z-10">
-            <MagicBento 
-              textAutoHide={true} 
-              enableStars={true} 
-              enableSpotlight={true} 
-              enableBorderGlow={true} 
-              disableAnimations={false} 
-              enableTilt={false} 
-              enableMagnetism={false} 
-              enableHoverLift={false} 
-              clickEffect={true} 
-              spotlightRadius={300} 
-              particleCount={12} 
-              glowColor="132, 0, 255" 
-            />
-          </div>
-        </section>  */}
+
+        {/* As Seen in & Our clients section */}
+
 
         {/* Violet 3 boxes section */}
         {/* <TestimonialsSection /> */}
 
+        {/* Magic Bento Box Section */}
+        {/* <section style={{
+          background: 'transparent',
+          zIndex: 21,
+          position: 'relative',
+          paddingTop: '80px',
+          paddingBottom: '80px',
+          width: '130vw',
+          height: '130vh',
+          marginLeft: 'calc(50% - 50vw)',
+          marginRight: 'calc(50% - 50vw)',
+          isolation: 'isolate',
+          overflow: 'hidden'
+        }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+            <DarkVeil
+              resolutionScale={1}
+              noiseIntensity={0.02}
+              scanlineIntensity={0.06}
+              scanlineFrequency={6}
+              warpAmount={0.03}
+            />
+          </div>
+          <div className="w-full max-w-6xl mx-auto px-4 relative z-10">
+            <MagicBento
+              textAutoHide={true}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              disableAnimations={false}
+              enableTilt={false}
+              enableMagnetism={false}
+              enableHoverLift={false}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="132, 0, 255"
+            />
+          </div>
+        </section> */}
+
         <section style={{
-          background: "black",
           width: "100vw",
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
