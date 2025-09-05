@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Canvas } from "@react-three/fiber";
 import Scene from "@/components/3D/Scene";
+import Lenis from "@studio-freight/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,26 @@ const PortalScrollDemo = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Local Lenis just for this VR section/page
+    const lenis = new Lenis({
+      duration: 4.2,
+      smoothWheel: true,
+      smoothTouch: true,
+      wheelMultiplier: 0.4,
+      touchMultiplier: 0.6,
+    });
+
+    // Keep ScrollTrigger in sync with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Drive Lenis via requestAnimationFrame
+    let rafId;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
     const getResponsiveValues = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -107,6 +128,8 @@ const PortalScrollDemo = () => {
       window.removeEventListener('resize', handleResize);
       if (tl?.scrollTrigger) tl.scrollTrigger.kill();
       if (tl) tl.kill();
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, []);
 

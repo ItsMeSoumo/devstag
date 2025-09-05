@@ -299,6 +299,21 @@ section {
   height: 100%;
   border-radius: 150px;
   overflow: hidden;
+  border: 1.5px solid rgba(186, 131, 255, 0.28);
+  box-shadow:
+    0 0 32px rgba(162, 89, 255, 0.28),
+    0 0 64px rgba(127, 60, 255, 0.16);
+}
+
+/* Soft purple glow ring (subtle) */
+.card-img::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 50%, rgba(127,60,255,0.22) 0%, rgba(127,60,255,0.12) 35%, transparent 70%);
+  filter: blur(18px);
+  z-index: 0;
 }
 
 .card-img img {

@@ -61,11 +61,11 @@ const Footer = () => {
           >
             <div className="flex items-center">
               <h2 className="font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent" style={{ fontSize: 'var(--logo-size)' }}>
-                DevStag Studio
+                Studio Devstag
               </h2>
             </div>
             <p className="text-white/60" style={{ marginTop: 'var(--text-margin)', fontSize: 'var(--copyright-size)' }}>
-              © {currentYear} DevStag Studio. All rights reserved.
+              &copy; {currentYear} Studio Devstag. All rights reserved.
             </p>
           </motion.div>
           
@@ -133,7 +133,7 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="border-t border-white/5 text-center text-white/40" style={{ marginTop: 'var(--bottom-margin)', paddingTop: 'var(--bottom-padding)', fontSize: 'var(--bottom-text-size)' }}
         >
-          <p>Designed with passion by DevStag Studio</p>
+          <p>Designed with passion by Studio Devstag</p>
         </motion.div>
       </div>
       <style jsx>{`
