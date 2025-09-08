@@ -278,6 +278,32 @@ const ScrollHero = () => {
         transform: translate(-50%, 0);
         will-change: opacity;
       }
+      .hero-img-copy p {
+        font-size: .70vw;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 0;
+        font-weight: 400;
+        font-family: 'Michroma', monospace;
+      }
+      
+      /* Responsive font sizes for scroll text */
+      @media (max-width: 90em) {
+        .hero-img-copy p {
+          font-size: 1.4vw;
+        }
+      }
+      @media (max-width: 64em) {
+        .hero-img-copy p {
+          font-size: 2.2vw;
+        }
+      }
+      @media (max-width: 40em) {
+        .hero-img-copy p {
+          font-size: 3.2vw;
+        }
+      }
       .fade-overlay {
         background-color: #fff;
         will-change: opacity;
@@ -447,7 +473,7 @@ const ScrollHero = () => {
       </svg>
     </div>
 
-    <div className="logo-container"></div>
+     <div className="logo-container"></div>
 
      <div className="overlay-copy">
 
@@ -464,18 +490,18 @@ const ScrollHero = () => {
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '1.5vw',
-          // boxShadow: '0 0.4vh 2.4vh 0 rgba(0,0,0,0.35), 0 0.1vh 0.8vh 0 rgba(0,0,0,0.15)',
-          // backgroundColor: 'rgba(255,255,255,0.04)',
-          // backdropFilter: 'blur(2vh)',
-          // WebkitBackdropFilter: 'blur(2vh)',
-          // backgroundImage: 'linear-gradient(120deg, rgba(4, 4, 4, 0.22), rgba(127,60,255,0.11), rgba(0,0,0,0.09))',
-          // // backgroundImage: "linear-gradient(180deg, rgba(25, 13, 66, 0) 4%, #190D42 33%, #4F34C7 67%, #7A6ECA 100%)",
-          // backgroundSize: '3vh',
-          // // boxShadow: '0 4px 32px 0 rgba(127,60,255,0.10)',
-          // // border: '1.5px solid rgba(255,255,255,0.13)',
-          // padding: '3vh 2vw',
-          // position: 'relative',
-          // overflow: 'hidden',
+          boxShadow: '0 0.4vh 2.4vh 0 rgba(0,0,0,0.35), 0 0.1vh 0.8vh 0 rgba(0,0,0,0.15)',
+          backgroundColor: 'rgba(255,255,255,0.04)',
+          backdropFilter: 'blur(2vh)',
+          WebkitBackdropFilter: 'blur(2vh)',
+          backgroundImage: 'linear-gradient(120deg, rgba(4, 4, 4, 0.22), rgba(127,60,255,0.11), rgba(0,0,0,0.09))',
+          // backgroundImage: "linear-gradient(180deg, rgba(25, 13, 66, 0) 4%, #190D42 33%, #4F34C7 67%, #7A6ECA 100%)",
+          backgroundSize: '3vh',
+          // boxShadow: '0 4px 32px 0 rgba(127,60,255,0.10)',
+          // border: '1.5px solid rgba(255,255,255,0.13)',
+          padding: '3vh 2vw',
+          position: 'relative',
+          overflow: 'hidden',
         }} >
 
         {/* VR man inside glass card - larger and touching bottom */}
@@ -766,7 +792,6 @@ const ScrollHero = () => {
      </div>
 
     </section>
-    
   </div>
   );
 };
