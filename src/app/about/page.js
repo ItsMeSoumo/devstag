@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import { motion, useReducedMotion } from 'framer-motion';
 import { TracingBeam } from '@/components/ui/tracing-beam';
 import LightRays from '@/components/ui/lightrays';
+import Image from 'next/image';
 
 const PremiumCard = ({ children, className = "", delay = 0 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -383,9 +384,11 @@ export default function AboutPage() {
               <div>
                 <div className="flex items-start gap-4 mb-5">
                   <div className="ui-square bg-gradient-to-br from-purple-500 to-fuchsia-500" aria-hidden="true">
-                    <img
+                    <Image
                       src="/globe.svg"
                       alt=""
+                      width={32}
+                      height={32}
                       className="ui-icon opacity-90 icon-invert"
                     />
                   </div>
@@ -574,11 +577,13 @@ export default function AboutPage() {
             <div className="grid-2-col items-stretch">
               {/* Large Feature Photo */}
               <div className="relative r-feature-photo rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-                <img
+                <Image
                   src="/images/floating_1.jpg"
                   alt="Studio portrait or hero visual"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   className="absolute inset-0 w-full h-full object-cover"
-                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" aria-hidden="true" />
                 <div className="photo-badge glass-effect rounded-full text-white/90 font-inter">
@@ -589,11 +594,12 @@ export default function AboutPage() {
               {/* Supporting Photos */}
               <div className="grid gap-6">
                 <div className="relative r-support-photo rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-                  <img
+                  <Image
                     src="/images/floating_2.jpg"
                     alt="Behind the scenes craft detail"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     className="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" aria-hidden="true" />
                   <div className="photo-badge photo-badge--sm glass-effect rounded-full text-white/90 font-inter">
@@ -601,11 +607,12 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="relative r-support-photo rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-                  <img
+                  <Image
                     src="/images/floating_3.jpg"
                     alt="Brand element or ambiance"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     className="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" aria-hidden="true" />
                   <div className="photo-badge photo-badge--sm glass-effect rounded-full text-white/90 font-inter">

@@ -532,7 +532,7 @@ export default function ContactPage() {
           <div className="container-tight space-y-xl">
             <div className="space-y-lg">
               <h2 className="text-heading font-bold text-white">Prefer a direct conversation?</h2>
-              <p className="text-gray-300 text-body-lg leading-relaxed">We're happy to schedule a call to discuss your goals and scope.</p>
+              <p className="text-gray-300 text-body-lg leading-relaxed">We&rsquo;re happy to schedule a call to discuss your goals and scope.</p>
             </div>
             <a 
               href="tel:+0000000000" 

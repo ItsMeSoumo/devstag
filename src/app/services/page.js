@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import LightRays from '@/components/ui/lightrays';
+import Image from 'next/image';
 
  
 
@@ -480,11 +481,12 @@ export default function Services() {
                 <ModernCard key={s.title} className="group p-0 hover:-translate-y-1" delay={0.05 * idx}>
                   {/* Media header */}
                   <div className="relative card-image-height w-full overflow-hidden border-b border-white/10">
-                    <img
+                    <Image
                       src={s.image}
                       alt={s.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.05]"
-                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
                   </div>
