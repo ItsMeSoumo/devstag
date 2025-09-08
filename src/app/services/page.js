@@ -628,6 +628,7 @@ export default function Services() {
                   { title: 'Scalable & Accessible', desc: 'Built to grow with your vision, while ensuring inclusivity and accessibility at the core.', color: 'from-fuchsia-500 to-pink-500' },
                 ].map((b, i) => (
                   <AnimatedCard
+                    key={b.title || i}
                     glowColor={smallGlowMap[0]}
                     depth={10}
                     hoverScale={1.02}

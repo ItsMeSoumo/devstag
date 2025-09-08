@@ -400,10 +400,10 @@ export default function ContactPage() {
             CONTACT THE STUDIO
           </div>
           <h1 className="text-display-xl font-bold gradient-primary">
-            Let's Talk
+            Let&rsquo;s Talk
           </h1>
           <p className="text-body-lg text-gray-300 leading-relaxed">
-            Tell us about your film, interactive, or immersive project. We'll help you plan, prototype, and produce.
+            Tell us about your film, interactive, or immersive project. We&rsquo;ll help you plan, prototype, and produce.
           </p>
         </motion.div>
 
